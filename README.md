@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Run Mock API
+
+Install Json-server:
+`npm i -g json-server`
+
+Run mock api
+`json-server --watch tw314Db.json -p 8080`
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -1,0 +1,87 @@
+{
+  "places": [
+    {
+      "id": 1,
+      "name": "Meu banco",
+      "averageTime": 30,
+      "createdAt": "2020-05-01"
+    },
+    {
+      "id": 2,
+      "name": "Outro banco",
+      "averageTime": 20,
+      "createdAt": "2020-05-01"
+    },
+    {
+      "name": "Banco Nvo",
+      "averageTime": 10,
+      "createdAt": "2020-04-30",
+      "id": 3
+    }
+  ],
+  "queues": [
+    {
+      "id": 1,
+      "placeId": 1,
+      "queueLenght": 2,
+      "createdAt": "2020-05-01"
+    },
+    {
+      "id": 1,
+      "placeId": 2,
+      "queueLenght": 2,
+      "createdAt": "2020-05-01"
+    }
+  ],
+  "users": [
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODg1NDUzNTh9.J_YoS0EmBpdxaIlNMTngKVkUDJFSLOpf05Ip6_f3ww8",
+      "createdAt": "2020-05-03T22:35:53.722Z",
+      "id": 1
+    }
+  ],
+  "tickets": [
+    {
+      "id": 1,
+      "queueId": 1,
+      "userId": 1,
+      "position": 2,
+      "status": "done",
+      "ticket": "NO867",
+      "createdAt": "2020-05-01"
+    },
+    {
+      "id": 2,
+      "queueId": 1,
+      "userId": 2,
+      "position": 1,
+      "status": "done",
+      "ticket": "PR267",
+      "createdAt": "2020-05-01"
+    }
+  ],
+  "rating": [
+    {
+      "id": 1,
+      "userId": 1,
+      "placeId": 1,
+      "stars": 4,
+      "createdAt": "2020-05-01"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "placeId": 2,
+      "stars": 5,
+      "createdAt": "2020-05-01"
+    }
+  ],
+  "historic": [
+    {
+      "id": 1,
+      "ratingId": 1,
+      "ticketId": 1,
+      "createdAt": "2020-05-01"
+    }
+  ]
+}
