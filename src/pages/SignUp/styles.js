@@ -1,21 +1,22 @@
 import styled from "styled-components";
 
+import backgroundImage from "../../assets/images/background.png";
+
 export const Container = styled.div`
+  height: 98vh;
   display: flex;
-  height: 100vh;
   align-items: center;
   justify-content: center;
+  background-image: url(${backgroundImage});
 `;
 
 export const Form = styled.form`
   width: 400px;
-  background: #fff;
   padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   img {
-    width: 100px;
     margin: 10px 0 40px;
   }
   p {
@@ -38,15 +39,6 @@ export const Form = styled.form`
     &::placeholder {
       color: #999;
     }
-  }
-  button {
-    color: #fff;
-    font-size: 16px;
-    background: #fc6963;
-    height: 56px;
-    border: 0;
-    border-radius: 5px;
-    width: 100%;
   }
   hr {
     margin: 20px 0;
