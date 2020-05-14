@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Status Server
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e7663fec-90cd-4d12-97ac-8cbecd5c6b83/deploy-status)](https://app.netlify.com/sites/tw314/deploys)
+
 ## Run Mock API
 
 Install Json-server:

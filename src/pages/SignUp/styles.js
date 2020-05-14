@@ -11,7 +11,7 @@ export const Container = styled.div`
   background-image: url(${backgroundImage});
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   width: 400px;
   display: flex;
   align-items: center;
