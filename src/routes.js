@@ -11,7 +11,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
       isAuthenticated() ? (
         <Component {...props} />
       ) : (
-        <Redirect to={{ pathname: "/signup", state: { from: props.location } }} />
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
       )
     }
   />
@@ -37,7 +37,7 @@ const HomeRoute = ({ component: Component, ...rest }) => (
       isAuthenticated() ? (
         <Redirect to={{ pathname: "/app", state: { from: props.location } }} />
       ) : (
-        <Redirect to={{ pathname: "/signup", state: { from: props.location } }} />
+        <Component {...props} />
       )
     }
   />
@@ -47,8 +47,7 @@ const Routes = () => (
   <BrowserRouter>
     <React.Suspense fallback={<h1>carregando...</h1>}>
       <Switch>
-        <HomeRoute exact path="/" />
-        <AppRoute path="/signup" component={SignUp} />
+        <HomeRoute exact path="/" component={SignUp} />
         <PrivateRoute path="/app" component={() => <h1>App</h1>} />
         <Route path="*" component={() => <h1>Page not found</h1>} />
       </Switch>
