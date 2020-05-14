@@ -1,36 +1,38 @@
-var CACHE_NAME = 'tw314-app';
+const CACHE_NAME = 'tw314-cache-v1';
 
-var urlsToCache = [
-    '/',
-    '/static/js/bundle.js',
-    '/static/js/main.chunk.js',
-    '/static/js/1.chunk.js',
-    '/static/js/0.chunk.js',
-    '/images/icons/favicon.ico',
-    '/css?family=Open+Sans',
-    '/icon?family=Material+Icons'
-];
+const urlsToCache = [
+  "/",
+  "static/js/*",
+  "static/media/*",
+  'http://localhost:8080'
+]
 
 self.addEventListener('install', function (event) {
-    // Perform install steps
-    event.waitUntil(
-        caches.open(CACHE_NAME)
-            .then(function (cache) {
-                return cache.addAll(urlsToCache);
-            })
-    );
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+    .then(function (cache) {
+      return cache.addAll(urlsToCache);
+    })
+  );
+});
+
+self.addEventListener("activate", event => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys().then(keyList =>
+      Promise.all(keyList.map(key => {
+        if (!cacheWhitelist.includes(key)) {
+          return caches.delete(key);
+        }
+      }))
+    )
+  );
 });
 
 self.addEventListener('fetch', function (event) {
-    event.respondWith(
-        caches.match(event.request)
-            .then(function (response) {
-                // Cache hit - return response
-                if (response) {
-                    return response;
-                }
-                return fetch(event.request);
-            }
-            )
-    );
-});  
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
+  );
+});
