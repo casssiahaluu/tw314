@@ -68,18 +68,6 @@
       "createdAt": "2020-05-13T05:37:30.782Z",
       "updatedAt": "2020-05-13T05:37:30.782Z",
       "id": 6
-    },
-    {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODk0MjkxNjZ9.skjR-YV4ec_iCe_B8X8Jx1SkXS9Mw0GDQOnILXU5jZU",
-      "createdAt": "2020-05-14T04:05:17.640Z",
-      "updatedAt": "2020-05-14T04:05:17.640Z",
-      "id": 7
-    },
-    {
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE1ODk0MjkzMDV9.QCJ4RcmBtvs6BEaiyDDfnPJrx8hTPFSoaakOFAennPI",
-      "createdAt": "2020-05-14T04:08:19.978Z",
-      "updatedAt": "2020-05-14T04:08:19.978Z",
-      "id": 8
     }
   ],
   "tickets": [
