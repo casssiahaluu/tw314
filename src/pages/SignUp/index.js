@@ -14,7 +14,7 @@ import Logo from "../../assets/logo/icon_logo.png";
 function SignUp (props) {
   const [error, setError] = useState("");
   
-  function handleSignUp() {
+  function onClick() {
     const token = jwt.sign({}, "tw314p@ssw0rd");
 
     try {
@@ -33,8 +33,7 @@ function SignUp (props) {
         <img src={Logo} height="200" alt="tw314 logo" />
         {error && <p>{error}</p>}
 
-        <ActionButton onClick={() => handleSignUp()}>Cadastrar grátis</ActionButton>
-        <hr />
+        <ActionButton onClick={() => onClick()}>aceitar e entrar</ActionButton>
       </Form>
     </Container>
   );

@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-const textColor = '#5E4343';
+import {textColor} from "./colors";
 
 export const ActionButton = styled.button`
   border: 0;
+  cursor: pointer;
   font-size: 0.90rem;
   padding: 12px 20px;
   color: ${textColor};
