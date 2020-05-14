@@ -16,15 +16,10 @@ function SignUp (props) {
   
   function onClick() {
     const token = jwt.sign({}, "tw314p@ssw0rd");
-
-    try {
-      api.post("/users", { token: token }).then();
-      login(token);
-      props.history.push("/");
-    } catch(err) {
-      console.log(err);
-      setError("Ocorreu um erro ao registrar seu token T.T");
-    }
+    
+    api.post("/users", { token: token })
+    .then(() => login(token))
+    .catch(() => setError("Ocorreu um erro ao registrar seu token T.T"));
   };
 
   return (
