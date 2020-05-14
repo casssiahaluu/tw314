@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-import backgroundImage from "../../assets/images/background.png";
-import {textColor} from "../../styles/colors";
+import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
+import {darkTextColor, errorTextColor, linkTextColor} from "../../styles/colors";
 
 export const Container = styled.div`
   height: 98vh;
@@ -12,38 +12,35 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.div`
-  width: 400px;
   display: flex;
+  max-width: 400px;
   align-items: center;
   flex-direction: column;
 
   img {
-    margin: 10px 0 40px;
+    margin: 10px 0 15px;
   }
 
   p {
-    padding: 10px;
     font-size: 1rem;
     text-align: center;
     margin-bottom: 15px;
-    color: ${textColor};
+    color: ${darkTextColor};
 
     &.error{
-      p {
-        color: #ff3333;
-        margin-bottom: 15px;
-        border: 1px solid #ff3333;
-        padding: 10px;
-        width: 100%;
-        text-align: center;
-      }
+      font-size: 0.85rem;
+      text-align: center;
+      color: ${errorTextColor};
     }
   }
 
   a {
-    font-size: 16;
-    font-weight: bold;
-    color: #999;
-    text-decoration: none;
+    font-size: 1rem;
+    color: ${linkTextColor};
+    text-decoration: underline;
+
+    &:hover {
+      color: darken(10%, ${linkTextColor});
+    }
   }
 `;

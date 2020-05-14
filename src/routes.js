@@ -45,12 +45,14 @@ const HomeRoute = ({ component: Component, ...rest }) => (
 
 const Routes = () => (
   <BrowserRouter>
-    <Switch>
-      <HomeRoute exact path="/" />
-      <AppRoute path="/signup" component={SignUp} />
-      <PrivateRoute path="/app" component={() => <h1>App</h1>} />
-      <Route path="*" component={() => <h1>Page not found</h1>} />
-    </Switch>
+    <React.Suspense fallback={<h1>carregando...</h1>}>
+      <Switch>
+        <HomeRoute exact path="/" />
+        <AppRoute path="/signup" component={SignUp} />
+        <PrivateRoute path="/app" component={() => <h1>App</h1>} />
+        <Route path="*" component={() => <h1>Page not found</h1>} />
+      </Switch>
+    </React.Suspense>
   </BrowserRouter>
 );
 
