@@ -17,19 +17,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
   />
 );
 
-const AppRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        <Redirect to={{ pathname: "/app", state: { from: props.location } }} />
-      ) : (
-        <Component {...props} />
-      )
-    }
-  />
-);
-
 const HomeRoute = ({ component: Component, ...rest }) => (
   <Route
     {...rest}
