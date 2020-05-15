@@ -4,7 +4,7 @@ const urlsToCache = [
   "/",
   "static/js/*",
   "static/media/*",
-  "https://tw-mock-api.herokuapp.com/"
+  'http://localhost:8080'
 ]
 
 self.addEventListener('install', function (event) {
