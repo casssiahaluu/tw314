@@ -4,7 +4,7 @@ const urlsToCache = [
   "/",
   "static/js/*",
   "static/media/*",
-  'http://localhost:8080'
+  `${process.env.REACT_APP_API_URL}`
 ]
 
 self.addEventListener('install', function (event) {
