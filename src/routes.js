@@ -4,39 +4,29 @@ import { isAuthenticated } from "./services/auth";
 
 import SignUp from "./pages/SignUp"
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
-      )
-    }
-  />
-);
-
-const HomeRoute = ({ component: Component, ...rest }) => (
-  <Route
-    {...rest}
-    render={props =>
-      isAuthenticated() ? (
-        <Redirect to={{ pathname: "/app", state: { from: props.location } }} />
-      ) : (
-        <Component {...props} />
-      )
-    }
-  />
-);
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) => isAuthenticated() ? children : (
+        <Redirect
+          to={{
+            pathname: "/",
+            state: { from: location }
+          }}
+        />)
+      }
+    />
+  );
+}
 
 const Routes = () => (
   <BrowserRouter>
     <React.Suspense fallback={<h1>carregando...</h1>}>
       <Switch>
-        <HomeRoute exact path="/" component={SignUp} />
-        <PrivateRoute path="/app" component={() => <h1>App</h1>} />
-        <Route path="*" component={() => <h1>Page not found</h1>} />
+        <Route exact path="/"><SignUp /></Route>
+        <PrivateRoute path="/app"><h1>App</h1></PrivateRoute>
+        <Route path="*"><h1>Page not found</h1></Route>
       </Switch>
     </React.Suspense>
   </BrowserRouter>

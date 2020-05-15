@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 
-import jwt from 'jsonwebtoken';
-
 import api from "../../services/api";
-import { login } from "../../services/auth";
+import { getJwt, getToken, login } from "../../services/auth";
 
 import { ActionButton } from "../../styles/button";
 
@@ -15,14 +13,19 @@ function SignUp (props) {
   const [error, setError] = useState("");
   
   function onClick() {
-    const token = jwt.sign({}, "tw314p@ssw0rd");
-
-    api.post("/users", { token: token })
-    .then(() => {
-      login(token);
-      props.history.push("/");
-    })
-    .catch(() => setError("Ops! Ocorreu um erro ao continuar T.T. Caso persista, entre em contato"));
+    if(getToken()) {
+      window.location.href = "/app";
+      console.log("Já existe token. Redirecionando para o App");
+    } else {
+      console.log("Não há token. Criando e redirecionando para o App");
+      api.post("/users", {
+        token: getJwt()
+      }).then(response => {
+        login(getJwt());
+        window.location.href = "/app";
+        console.log("Token criado com sucesso! \\o/ Bem-vindx, nerd!");
+      }).catch(() => setError("Ops! Ocorreu um erro ao continuar T.T. Caso persista, entre em contato"));
+    }
   };
 
   return (
