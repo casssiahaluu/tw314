@@ -10,7 +10,7 @@ const now = new Date();
 
 // For prod
 const api = axios.create({
-  baseURL: "https://tw-mock-api.herokuapp.com/"
+  baseURL: "https://tw-mock-api.herokuapp.com"
 });
 
 api.interceptors.request.use(async config => {
