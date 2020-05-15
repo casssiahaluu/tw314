@@ -4,7 +4,7 @@ const urlsToCache = [
   "/",
   "static/js/*",
   "static/media/*",
-  `${process.env.REACT_APP_API_URL}`
+  "https://tw-mock-api.herokuapp.com/"
 ]
 
 self.addEventListener('install', function (event) {
