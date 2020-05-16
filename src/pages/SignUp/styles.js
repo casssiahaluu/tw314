@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
 import {darkTextColor, errorTextColor, linkTextColor} from "../../styles/colors";
+import {centeredElement} from "../../styles/helpers";
 
 export const Container = styled.div`
-  height: 98vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
+  ${centeredElement}
   background-image: url(${backgroundImage});
 `;
 

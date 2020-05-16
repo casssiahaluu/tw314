@@ -5,7 +5,7 @@ import Page from "../../components/Page";
 function Help () {
   return (
     <Page title="ajuda">
-      
+      oi
     </Page>
   );
 }
