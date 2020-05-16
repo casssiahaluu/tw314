@@ -2,18 +2,18 @@ import styled from "styled-components";
 
 import backgroundImage from "../../assets/images/backgroundFadder-min.jpg";
 import {
-  darkTextColor, 
-  errorTextColor, 
-  linkTextColor,
   bgDefaultPage,
+  darkTextColor,
   shadowColor
 } from "../../styles/colors";
 
+import {
+  centeredElement
+} from "../../styles/helpers";
+
 export const Container = styled.div`
-  height: 98vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
+  ${centeredElement}
   background-image: url(${backgroundImage});
 `;
 
@@ -25,6 +25,10 @@ export const Nav = styled.nav`
   align-items: center;
   color: ${darkTextColor};
 
+  a {
+    color: ${darkTextColor};
+  }
+
   &.bottom {
     bottom: 0;
     font-size: 42px;
@@ -35,7 +39,6 @@ export const Nav = styled.nav`
 
     a {
       margin auto 20px;
-      color: ${darkTextColor};
   
       .fa-times {
         font-size: 52px;
@@ -53,78 +56,47 @@ export const Nav = styled.nav`
       font-size: 1.2rem;
     }
 
-    img { margin: auto 15px; }
+    img, i { margin: auto 15px; }
 
-    i {
-      margin: auto 15px;
+    .menu {
+      right: 15px;
+      cursor: pointer;
+      padding-left: 30px;
+      position: absolute;
+    }  
+  }
+`;
 
-      &.fa-ellipsis-v {
-        right: 15px;
-        position: absolute;
-      }
+export const ContextMenu = styled.nav`
+  right: 25px;
+  font-weight: 700;
+  font-size: 0.75rem;
+  position: absolute;
+
+  ul {
+    padding: 4px 15px;
+    list-style-type: none;
+    box-shadow: 0 0 6px ${shadowColor};
+    background-color: ${bgDefaultPage};
+
+    a {
+      width: 100%;
+      text-decoration: none;
       
-      .fa-arrow-left {
+      li {
+        padding: 5px;
+        margin: 2px auto;
+        
+        &:hover {
+          color: #F2913D;
+          background-color: #FFFAE9;
+        }
 
+        &.feedback {
+          border-top: 1px solid #5e434330;
+          border-bottom: 1px solid #5e434330;
+        }
       }
-    }
-
-
-    
-  }
-`;
-
-export const NavTop = styled.nav`
-  position: fixed;
-  top: 0;
-  width: 100%;
-`;
-
-
-export const P = styled.p`
-  p {
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 15px;
-    color: ${darkTextColor};
-
-    &.error{
-      font-size: 0.85rem;
-      text-align: center;
-      color: ${errorTextColor};
-    }
-  }
-`;
-
-export const Form = styled.div`
-  display: flex;
-  max-width: 400px;
-  align-items: center;
-  flex-direction: column;
-
-  img {
-    margin: 10px 0 15px;
-  }
-
-  p {
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 15px;
-    color: ${darkTextColor};
-
-    &.error{
-      font-size: 0.85rem;
-      text-align: center;
-      color: ${errorTextColor};
-    }
-  }
-
-  a {
-    font-size: 1rem;
-    color: ${linkTextColor};
-    text-decoration: underline;
-
-    &:hover {
-      color: darken(10%, ${linkTextColor});
     }
   }
 `;

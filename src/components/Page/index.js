@@ -1,32 +1,52 @@
 import React from "react";
 
-import { Container, Nav } from "./styles";
+import { Container, ContextMenu, Nav } from "./styles";
 
 import Logo from "../../assets/logo/logo_horizontal.png";
 
 export default function Page (props) {
+  const [menu, toggleMenu] = React.useState(false);
+
+  function onClick() {
+    toggleMenu(!menu);
+  }
+
   return (
     <Container>
       <Nav className="top">
         {props.title ? (
-          <React.Fragment><i class="fas fa-arrow-left"></i> <span>{props.title}</span></React.Fragment>
+          <React.Fragment>
+            <a href="/app" title="voltar para home">
+              <i class="fas fa-arrow-left"></i>
+            </a>
+            <span>{props.title}</span>
+          </React.Fragment>
         ) : (
           <img src={Logo} height="32" alt="tw314 logo" />
         )}
-        <i class="fas fa-ellipsis-v"></i>
+        <div className="menu" title="menu" onClick={() => onClick()}>
+          <i class="fas fa-ellipsis-v"></i>
+          {menu && <ContextMenu>
+            <ul>
+              <a href="/help"><li>ajuda</li></a>
+              <a href="mailto:haluanedecassia@gmail.com"><li className="feedback">feedback</li></a>
+              <a href="/about"><li>sobre</li></a>
+            </ul>
+          </ContextMenu>}
+        </div>
       </Nav>
       {props.children}
       <Nav className="bottom">
-        <a href="/#">
+        <a href="/#" title="sair da file">
           <i class="fas fa-times"></i>
         </a>
-        <a href="/#">
+        <a href="/#" title="avaliar local">
           <i class="fas fa-star"></i>
         </a>
-        <a href="/#">
+        <a href="/#" title="adicionar ao histórico">
           <i class="far fa-check-circle"></i>
         </a>
-        <a href="/#">
+        <a href="/#" title="ver histórico">
           <i class="far fa-clock"></i>
         </a>
       </Nav>
