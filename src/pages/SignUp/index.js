@@ -11,8 +11,11 @@ import Logo from "../../assets/logo/logo_vertical.png";
 
 function SignUp (props) {
   const [error, setError] = useState("");
+  const [info, setInfo] = useState("");
   
   function onClick() {
+    setInfo("Carregando. Aguarde...");
+
     if(getToken()) {
       window.location.href = "/app";
       console.log("Já existe token. Redirecionando para o App");
@@ -24,6 +27,7 @@ function SignUp (props) {
         login(getJwt());
         window.location.href = "/app";
         console.log("Token criado com sucesso! \\o/ Bem-vindx, nerd!");
+        setInfo("Feito! \\o/ Entrando no aplicativo");
       }).catch(() => setError("Ops! Ocorreu um erro ao continuar T.T. Caso persista, entre em contato"));
     }
   };
@@ -36,6 +40,7 @@ function SignUp (props) {
           para continuar usando nosso aplicativo você precisa aceitar nossos <a href="/#">termos de uso</a>.<br />
           deseja continuar?</p>
         <ActionButton onClick={() => onClick()}>aceitar e entrar</ActionButton>
+        {info && <p>{info}</p>}
         {error && <p className="error">{error}</p>}
       </Form>
     </Container>
