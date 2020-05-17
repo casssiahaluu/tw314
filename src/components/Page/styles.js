@@ -8,12 +8,11 @@ import {
 } from "../../styles/colors";
 
 import {
-  centeredElement
+  hoverColor
 } from "../../styles/helpers";
 
 export const Container = styled.div`
   height: 100vh;
-  ${centeredElement}
   background-image: url(${backgroundImage});
 `;
 
@@ -27,6 +26,8 @@ export const Nav = styled.nav`
 
   a {
     color: ${darkTextColor};
+
+    ${hoverColor}
   }
 
   &.bottom {
@@ -63,6 +64,8 @@ export const Nav = styled.nav`
       cursor: pointer;
       padding-left: 30px;
       position: absolute;
+
+      ${hoverColor}
     }  
   }
 `;
@@ -86,11 +89,9 @@ export const ContextMenu = styled.nav`
       li {
         padding: 5px;
         margin: 2px auto;
+        transition: color 0.15s ease-in-out;
         
-        &:hover {
-          color: #F2913D;
-          background-color: #FFFAE9;
-        }
+        ${hoverColor}
 
         &.feedback {
           border-top: 1px solid #5e434330;
