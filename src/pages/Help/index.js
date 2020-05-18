@@ -7,7 +7,7 @@ import { Container } from "./styles";
 function Help () {
   const [faqs, setFaqs] = React.useState([{
     question: "O que é um qrcode?",
-    answer: (<React.Fragment>Um negócio muito bonito</React.Fragment>),
+    answer: (<React.Fragment>O qrcode (ou código qr) é um código de barras bidimensional, com um padrão de barras diferente dos tradicionais, parecido com esse aqui <i class="fas fa-qrcode"></i><br />  Com ele, você consegue escanear com seu celular e ter acesso a várias coisas legais, como textos, links e outros arquivos de mídia (vídeo, imagem...). No tw, o código qr vai te dar uma senha que vai conseguir entrar diretamente no app, pra deixar sua vida ainda mais fácil. Não é demais?</React.Fragment>),
     open: false
   }, {
     question: "Onde encontro a senha?",

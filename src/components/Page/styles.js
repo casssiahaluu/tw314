@@ -77,6 +77,7 @@ export const ContextMenu = styled.nav`
   position: absolute;
 
   ul {
+    z-index: 999;
     padding: 4px 15px;
     list-style-type: none;
     box-shadow: 0 0 6px ${shadowColor};

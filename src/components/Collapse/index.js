@@ -2,8 +2,6 @@ import React from "react";
 
 import { Item } from "./styles";
 
-import Logo from "../../assets/logo/logo_horizontal.png";
-
 export default function Collapse ({faq, index, toggle}) {
   return (
     <Item 
