@@ -2,8 +2,9 @@ import React from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { isAuthenticated } from "./services/auth";
 
-import SignUp from "./pages/SignUp"
-import Help from "./pages/Help"
+import About from "./pages/About";
+import Help from "./pages/Help";
+import SignUp from "./pages/SignUp";
 
 function PrivateRoute({ children, ...rest }) {
   return (
@@ -28,6 +29,7 @@ const Routes = () => (
         <Route exact path="/"><SignUp /></Route>
         <PrivateRoute path="/app"><h1>App</h1></PrivateRoute>
         <PrivateRoute path="/help"><Help /></PrivateRoute>
+        <PrivateRoute path="/about"><About /></PrivateRoute>
         <Route path="*"><h1>Page not found</h1></Route>
       </Switch>
     </React.Suspense>
