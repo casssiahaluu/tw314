@@ -1,13 +1,16 @@
 import styled from "styled-components";
 
-import {
-  blockElement
-} from "../../styles/helpers";
+import { centeredElement } from "../../styles/helpers";
 
 export const Container = styled.div`
-  ${blockElement}
+  ${centeredElement}
+  flex-wrap: wrap;
+  text-align:  center;
+  flex-direction: column;
+`;
 
+export const ResponsiveImg = styled.img`
   width: 100%;
-  margin: 0 auto;
-  cursor: pointer;
+  height: auto;
+  max-width: 235px;
 `;
