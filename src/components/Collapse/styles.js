@@ -31,7 +31,7 @@ export const Item = styled.div`
 
     font-weight: 700;
     position: relative;
-    padding-right: 80px;
+    padding-right: 30px;
 
     &::after {
       ${fontAwesomeConfig}
