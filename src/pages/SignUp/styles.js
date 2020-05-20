@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
-import {darkTextColor, errorTextColor, linkTextColor} from "../../styles/colors";
+import { errorTextColor, linkTextColor} from "../../styles/colors";
 import {centeredElement} from "../../styles/helpers";
 
 export const Container = styled.div`
@@ -24,7 +24,6 @@ export const Form = styled.div`
     font-size: 1rem;
     text-align: center;
     margin-bottom: 15px;
-    color: ${darkTextColor};
 
     &.error{
       font-size: 0.85rem;

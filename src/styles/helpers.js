@@ -1,4 +1,5 @@
 export const centeredElement = `
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -13,7 +14,7 @@ export const baselineElement = `
 
 export const blockElement = `
   display: block;
-  padding-top: 60px;
+  padding: 60px 0;
 `;
 
 export const borderColor = `1px solid #5e434330`;

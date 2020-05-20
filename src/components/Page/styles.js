@@ -22,11 +22,10 @@ export const Nav = styled.nav`
   display: flex;
   position: fixed;
   align-items: center;
-  color: ${darkTextColor};
 
   a {
     color: ${darkTextColor};
-
+    
     ${hoverColor}
   }
 

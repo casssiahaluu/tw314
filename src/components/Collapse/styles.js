@@ -1,10 +1,6 @@
 import styled from "styled-components";
 
 import {
-  darkTextColor,
-} from "../../styles/colors";
-
-import {
   borderColor,
   fontAwesomeConfig,
   transitionAllEase
@@ -12,7 +8,6 @@ import {
 
 export const Item = styled.div`
   padding: 15px 20px;
-  color: ${darkTextColor};
   border-top: ${borderColor};
   background-color: #ebebeb82;
 
