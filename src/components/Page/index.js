@@ -46,7 +46,7 @@ export default function Page (props) {
         <a href="/#" title="adicionar ao histórico">
           <i className="far fa-check-circle"></i>
         </a>
-        <a href="/#" title="ver histórico">
+        <a href="/historic" title="ver histórico">
           <i className="far fa-clock"></i>
         </a>
       </Nav>

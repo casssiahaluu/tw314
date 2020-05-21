@@ -5,8 +5,8 @@ import { errorTextColor, linkTextColor} from "../../styles/colors";
 import {centeredElement} from "../../styles/helpers";
 
 export const Container = styled.div`
-  height: 100vh;
   ${centeredElement}
+  height: 100vh;
   background-image: url(${backgroundImage});
 `;
 

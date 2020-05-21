@@ -4,6 +4,7 @@ import { centeredElement } from "../../styles/helpers";
 
 export const Container = styled.div`
   ${centeredElement}
+  height: 100%;
   flex-wrap: wrap;
   text-align:  center;
   flex-direction: column;
