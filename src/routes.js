@@ -6,6 +6,7 @@ import About from "./pages/About";
 import Help from "./pages/Help";
 import Historic from "./pages/Historic";
 import SignUp from "./pages/SignUp";
+import Page404 from "./components/Page404";
 
 function PrivateRoute({ children, ...rest }) {
   return (
@@ -32,7 +33,7 @@ const Routes = () => (
         <PrivateRoute path="/about"><About /></PrivateRoute>
         <PrivateRoute path="/help"><Help /></PrivateRoute>
         <PrivateRoute path="/historic"><Historic /></PrivateRoute>
-        <Route path="*"><h1>Page not found</h1></Route>
+        <Route path="*"><Page404 /></Route>
       </Switch>
     </React.Suspense>
   </BrowserRouter>
