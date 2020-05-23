@@ -12,12 +12,16 @@ import Logo from "../../assets/logo/logo_vertical.png";
 function SignUp (props) {
   const [error, setError] = useState("");
   const [info, setInfo] = useState("");
+
+  function redirect() {
+    window.location.href = "/add-ticket";
+  }
   
   function onClick() {
     setInfo("Carregando. Aguarde...");
 
     if(getToken()) {
-      window.location.href = "/app";
+      redirect();
       console.log("Já existe token. Redirecionando para o App");
     } else {
       console.log("Não há token. Criando e redirecionando para o App");
@@ -25,7 +29,7 @@ function SignUp (props) {
         token: getJwt()
       }).then(response => {
         login(getJwt());
-        window.location.href = "/app";
+        redirect();
         console.log("Token criado com sucesso! \\o/ Bem-vindx, nerd!");
         setInfo("Feito! \\o/ Entrando no aplicativo");
       }).catch(() => setError("Ops! Ocorreu um erro ao continuar T.T. Caso persista, entre em contato"));
