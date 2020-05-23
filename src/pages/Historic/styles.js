@@ -16,6 +16,11 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
+export const Any = styled.div`
+  margin: 15px;
+  text-align: center;
+`;
+
 export const Item = styled.div`
   padding: 15px 20px;
   border-top: ${borderColor};

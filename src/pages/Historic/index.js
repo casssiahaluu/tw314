@@ -2,14 +2,37 @@ import React from "react";
 import api from "../../services/api";
 
 import Page from "../../components/Page";
-import { Container, Item } from "./styles";
+import { Any, Container, Item } from "./styles";
 
 export default function Historic () {
   const [historic, setHistoric] = React.useState([]);
-  const [place, setPlace] = React.useState([]);
+  
+  function getStars(star) {
+    let stars = [];
+
+    for (let i=1; i<=5; i++){
+      if (i <= star) stars.push(<i className="fas fa-star"></i>);
+      else stars.push(<i className="far fa-star"></i>);
+    }
+
+    return stars;
+  }
+
+  function getDate(date) {
+    const newDate = new Date(date);
+
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "numeric"
+    };
+
+    return newDate.toLocaleString('pt-BR', options);
+  }
 
   React.useEffect(() => {
-    api.get("/historics?&_expand=rating").then(response => {
+    getStars()
+    api.get("/historics?&_expand=rating").then(response => {      
       setHistoric(response.data);
     }).catch(error => console.log(error));
   }, []);
@@ -20,7 +43,7 @@ export default function Historic () {
         {historic ? historic.map((log, i) => ( 
           <Item key={`historic_${i}`}>
             <div className="historic-date">
-              {log.createdAt}
+              {getDate(log.createdAt)}
             </div>
             <div className="historic-details">
               <div className="infos">
@@ -33,15 +56,11 @@ export default function Historic () {
                 </p>
               </div>
               <div className="stars">
-                <i className="fas fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i> 
+                {getStars(log.rating.stars)}
               </div>
             </div>
           </Item>
-        )) : "else"}
+        )) : <Any>Eita! Parece que não tem nenhum histórico aqui! Mas tá tudo certo, só  adicionar algum enquanto estiver na fila que vai aparecer aqui <span role="img" aria-label="emoji piscando">&#128521;</span></Any>}
       </Container>
     </Page>
   );
