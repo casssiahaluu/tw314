@@ -27,12 +27,15 @@ function SignUp (props) {
       console.log("Não há token. Criando e redirecionando para o App");
       api.post("/users", {
         token: getJwt()
-      }).then(response => {
+      }).then(() => {
         login(getJwt());
         redirect();
         console.log("Token criado com sucesso! \\o/ Bem-vindx, nerd!");
         setInfo("Feito! \\o/ Entrando no aplicativo");
-      }).catch(() => setError("Ops! Ocorreu um erro ao continuar T.T. Caso persista, entre em contato"));
+      }).catch(() => {
+        setInfo("");
+        setError("Ops! Ocorreu um erro ao continuar T.T. Caso persista, entre em contato")
+      });
     }
   };
 
@@ -44,7 +47,7 @@ function SignUp (props) {
           para continuar usando nosso aplicativo você precisa aceitar nossos <a href="/#">termos de uso</a>.<br />
           deseja continuar?</p>
         <ActionButton onClick={() => onClick()}>aceitar e entrar</ActionButton>
-        {info && <p>{info}</p>}
+        {info && <p className="info">{info}</p>}
         {error && <p className="error">{error}</p>}
       </Form>
     </Container>

@@ -24,12 +24,6 @@ export const Form = styled.div`
     font-size: 1rem;
     text-align: center;
     margin-bottom: 15px;
-
-    &.error{
-      font-size: 0.85rem;
-      text-align: center;
-      color: ${errorTextColor};
-    }
   }
 
   a {

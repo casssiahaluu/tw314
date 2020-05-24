@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import api from "../../services/api";
-import { getJwt, getToken, login } from "../../services/auth";
+// import api from "../../services/api";
+// import { getJwt, getToken, login } from "../../services/auth";
 
 import { ActionButton } from "../../styles/button";
 
@@ -31,6 +31,8 @@ export default function AddTicket (props) {
             <img src={qrCodeIcon} alt="tw314 logo" />
           </button>
         </InputGroup>
+        {error && <p className="error">{error}</p>}
+        {info && <p className="info">{info}</p>}
         <ActionButton onClick={() => onClick()}>entrar na fila</ActionButton>
       </div>
       <div className="qr-links">

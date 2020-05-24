@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import {bgDefaultPage, darkTextColor} from "./colors";
+import {bgDefaultPage, darkTextColor, errorTextColor, linkTextColor} from "./colors";
 import {hoverColor} from "./helpers";
 
 import "font-awesome/css/font-awesome.css";
@@ -15,8 +15,20 @@ html, body {
   -webkit-font-smoothing: antialiased !important;
   font-family: 'Comfortaa', 'Helvetica', Arial, sans-serif;
 
+  p {
+    &.error {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: ${errorTextColor};
+    }
+
+    &.info {
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+  }
   a {
-    color: linkTextColor;
+    color: ${linkTextColor};
     
     ${hoverColor}
   }
