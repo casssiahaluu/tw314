@@ -31,4 +31,4 @@ export const fontAwesomeConfig = `
   font-family: "Font Awesome 5 Free";
 `;
 
-export const transitionAllEase = `transition: all 0.4s ease-out;`;
+export const transitionAllEase = `transition: all 0.2s ease-out;`;
