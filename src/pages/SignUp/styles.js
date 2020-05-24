@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
-import { errorTextColor, linkTextColor} from "../../styles/colors";
+import { linkTextColor} from "../../styles/colors";
 import {centeredElement} from "../../styles/helpers";
 
 export const Container = styled.div`
