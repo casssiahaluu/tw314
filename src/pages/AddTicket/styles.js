@@ -1,44 +1,56 @@
 import styled from "styled-components";
 
 import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
-import { errorTextColor, linkTextColor} from "../../styles/colors";
-import {centeredElement} from "../../styles/helpers";
+import { bgDefaultPage, darkTextColor, errorTextColor } from "../../styles/colors";
+import { centeredElement, transitionAllEase } from "../../styles/helpers";
 
 export const Container = styled.div`
   ${centeredElement}
   height: 100vh;
+  flex-wrap: wrap;
+  text-align:  center;
   background-image: url(${backgroundImage});
+
+  div {
+    &.qr-links { margin-bottom: 15px; }
+    
+    &.qr-title, &.qr-links { align-self: flex-end; }
+
+    h1 { font-size: 1.7rem; }
+  }
 `;
 
-export const Form = styled.div`
-  display: flex;
-  max-width: 400px;
-  align-items: center;
-  flex-direction: column;
+export const InputGroup = styled.div`
+  position: relative;
+  margin-bottom: 10px;
 
-  img {
-    margin: 10px 0 15px;
-  }
-
-  p {
-    font-size: 1rem;
-    text-align: center;
-    margin-bottom: 15px;
-
-    &.error{
-      font-size: 0.85rem;
-      text-align: center;
-      color: ${errorTextColor};
+  input {
+    height: 30px;
+    border-radius: 20px;
+    padding: 0 40px 0 10px;
+    color: ${darkTextColor};
+    border: 1px solid #8B8B8B;
+    background-color: ${bgDefaultPage};
+    ${transitionAllEase}
+    
+    &:focus {
+      box-shadow: 0 0 5px 0 #8B8B8B;
     }
   }
 
-  a {
-    font-size: 1rem;
-    color: ${linkTextColor};
-    text-decoration: underline;
+  button {
+    top: 5px;
+    right: 10px;
+    border: none;
+    cursor: pointer;
+    background: none;
+    padding: 4px 6px;
+    position: absolute;
 
-    &:hover {
-      color: darken(10%, ${linkTextColor});
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 1rem;
     }
   }
 `;
