@@ -1,4 +1,5 @@
 export const shadowColor = "#CAC7C7";
+export const browShadowColor= "#8B8B8B";
 export const bgDefaultPage = "#FFFEFA";
 
 export const darkTextColor = '#5E4343';

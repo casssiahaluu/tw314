@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
-import { bgDefaultPage, darkTextColor, errorTextColor } from "../../styles/colors";
+import { bgDefaultPage, browShadowColor, darkTextColor, errorTextColor } from "../../styles/colors";
 import { centeredElement, transitionAllEase } from "../../styles/helpers";
 
 export const Container = styled.div`
@@ -32,13 +32,13 @@ export const InputGroup = styled.div`
     border-radius: 20px;
     padding: 0 40px 0 10px;
     color: ${darkTextColor};
-    border: 1px solid #8B8B8B;
+    border: 1px solid ${browShadowColor};
     background-color: ${bgDefaultPage};
 
     ${transitionAllEase}
     
     &:focus {
-      box-shadow: 0 0 5px 0 #8B8B8B;
+      box-shadow: 0 0 5px 0 ${browShadowColor};
     }
   }
 
@@ -60,7 +60,7 @@ export const InputGroup = styled.div`
 
       &:hover, &:focus, &active {
         filter: brightness(110%);
-        box-shadow: 0 0 1px 0 #8B8B8B;
+        box-shadow: 0 0 1px 0 ${browShadowColor};
       }
     }
   }
