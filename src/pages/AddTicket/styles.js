@@ -12,9 +12,12 @@ export const Container = styled.div`
   background-image: url(${backgroundImage});
 
   div {
-    &.qr-links { margin-bottom: 15px; }
+    &.qr-links { margin-bottom: 35px; }
     
-    &.qr-title, &.qr-links { align-self: flex-end; }
+    &.qr-title, &.qr-links { 
+      flex-basis: 100%;
+      align-self: end; 
+    }
 
     h1 { font-size: 1.7rem; }
   }
@@ -31,6 +34,7 @@ export const InputGroup = styled.div`
     color: ${darkTextColor};
     border: 1px solid #8B8B8B;
     background-color: ${bgDefaultPage};
+
     ${transitionAllEase}
     
     &:focus {
@@ -51,6 +55,13 @@ export const InputGroup = styled.div`
       width: 100%;
       height: auto;
       max-width: 1rem;
+
+      ${transitionAllEase}
+
+      &:hover, &:focus, &active {
+        filter: brightness(110%);
+        box-shadow: 0 0 1px 0 #8B8B8B;
+      }
     }
   }
 `;
