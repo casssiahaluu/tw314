@@ -31,10 +31,12 @@ const Routes = () => (
     <React.Suspense fallback={<h1>carregando...</h1>}>
       <Switch>
         <Route exact path="/"><SignUp /></Route>
+        <Route path="/help"><Help /></Route>
+        
         <PrivateRoute path="/add-ticket"><AddTicket /></PrivateRoute>
         <PrivateRoute path="/about"><About /></PrivateRoute>
-        <PrivateRoute path="/help"><Help /></PrivateRoute>
         <PrivateRoute path="/historic"><Historic /></PrivateRoute>
+
         <Route path="*"><Page404 /></Route>
       </Switch>
     </React.Suspense>
