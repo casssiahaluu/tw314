@@ -1,15 +1,30 @@
 import React from "react";
 
-import { Item } from "./styles";
+import { ActionButton } from "../../styles/button";
 
-export default function Page404 ({faq, index, toggle}) {
+import { Container } from "./styles";
+import yoda from "../../assets/images/yoda404.png";
+import logo from "../../assets/logo/icon_logo.png";
+
+export default function Page404 () {
   return (
-    <Item 
-      key={index} 
-      className={faq.open && 'open'}
-      onClick={() => toggle(index)}
-    >
-      Santa página vazia, Batman! Nessa lista não tem nada! Que tal adicionar algo ao histórico antes?
-    </Item>
+    <Container>
+      <div className="logo">
+        <img src={logo} alt="Logo tw314" />
+      </div>
+      <div>
+        <h1>404</h1>
+      </div>
+      <div>
+        <p>
+          Encontrada a página não foi. <br />
+          Voltar ao app você pode.
+        </p>
+        <ActionButton onClick={() => window.location.href = "/app"}>voltar ao app</ActionButton>
+      </div>
+      <div>
+        <img src={yoda} alt="yoda" />
+      </div>
+    </Container>
   );
 };

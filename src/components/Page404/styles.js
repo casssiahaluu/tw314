@@ -1,56 +1,41 @@
 import styled from "styled-components";
 
-import {
-  borderColor,
-  fontAwesomeConfig,
-  transitionAllEase
-} from "../../styles/helpers";
+import { lightColor } from "../../styles/colors";
+import {centeredElement} from "../../styles/helpers";
 
-export const Item = styled.div`
-  padding: 15px 20px;
-  border-top: ${borderColor};
-  background-color: #ebebeb82;
+import backgroundImage from "../../assets/images/dagobah404.jpg";
 
-  &.open {
-    .faq-question {
-      margin-bottom: 15px;
+export const Container = styled.div`
+  ${centeredElement}
+  height: 100vh;
+  flex-wrap: wrap;
+  text-align: center;
+  color: ${lightColor};
+  background-size: cover;
+  background-image: url(${backgroundImage});
 
-      &::after {
-        transform: translateY(-50%) rotate(180deg);
-      }
+  div {
+    flex-basis: 100%;
+
+    h1 {
+      margin: 0;
+      font-size: 8rem;
     }
 
-    .faq-answer {
-      opacity: 1;
-      max-height: 1000px;
+    p {
+      font-size: 1.2rem;
+      font-weight: 600;
     }
-  }
 
-  .faq-question {
-    ${transitionAllEase}
-
-    font-weight: 700;
-    position: relative;
-    padding-right: 30px;
-
-    &::after {
-      ${fontAwesomeConfig}
-      ${transitionAllEase}
-      
-      content: "\f0d7";
-      top: 50%;
-      right: 10px;
-      position: absolute;
-      transform: translateY(-50%);
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 250px;
     }
-  }
 
-  .faq-answer {
-    ${transitionAllEase}
-
-    opacity: 0;
-    max-height: 0;
-    font-size: 0.80rem;
-    overflow-y: hidden;
+    &.logo {
+      max-width: 50px;
+    }
   }
 `;
+ 
