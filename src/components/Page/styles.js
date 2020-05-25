@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 import backgroundImage from "../../assets/images/backgroundFadder-min.jpg";
 import {
-  bgDefaultPage,
-  darkTextColor,
+  lightColor,
+  darkColor,
   shadowColor
 } from "../../styles/colors";
 
@@ -24,7 +24,7 @@ export const Nav = styled.nav`
   align-items: center;
 
   a {
-    color: ${darkTextColor};
+    color: ${darkColor};
     
     ${hoverColor}
   }
@@ -35,7 +35,7 @@ export const Nav = styled.nav`
     text-align: center;
     justify-content: center;
     box-shadow: 0 0 6px ${shadowColor};
-    background-color: ${bgDefaultPage};
+    background-color: ${lightColor};
 
     a {
       margin auto 20px;
@@ -80,7 +80,7 @@ export const ContextMenu = styled.nav`
     padding: 4px 15px;
     list-style-type: none;
     box-shadow: 0 0 6px ${shadowColor};
-    background-color: ${bgDefaultPage};
+    background-color: ${lightColor};
 
     a {
       width: 100%;

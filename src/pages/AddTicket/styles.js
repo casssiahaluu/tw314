@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
-import { bgDefaultPage, browShadowColor, darkTextColor } from "../../styles/colors";
+import { lightColor, browShadowColor, darkColor } from "../../styles/colors";
 import { centeredElement, transitionAllEase } from "../../styles/helpers";
 
 export const Container = styled.div`
@@ -29,11 +29,11 @@ export const InputGroup = styled.div`
 
   input {
     height: 30px;
+    color: ${darkColor};
     border-radius: 20px;
     padding: 0 40px 0 10px;
-    color: ${darkTextColor};
+    background-color: ${lightColor};
     border: 1px solid ${browShadowColor};
-    background-color: ${bgDefaultPage};
 
     ${transitionAllEase}
     
