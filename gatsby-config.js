@@ -8,8 +8,7 @@ module.exports = {
         fonts: [
           {
             family: `Comfortaa`,
-            subsets: [`latin`],
-            variants: [`300`, `400`, `500`, `600`, `700`]
+            variants: [`300`, `700`]
           },
         ],
       }, 

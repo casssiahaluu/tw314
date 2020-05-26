@@ -5,7 +5,6 @@ import {hoverColor} from "./helpers";
 import "font-awesome/css/font-awesome.css";
 
 export const Global = createGlobalStyle`
-
 html, body {
   margin: 0;
   font-size: 16px;
@@ -13,7 +12,7 @@ html, body {
   background-color: ${lightColor};
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
-  font-family: 'Comfortaa', 'Helvetica', Arial, sans-serif;
+  font-family: Comfortaa, san-serif;
 
   p {
     &.error {
