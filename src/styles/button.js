@@ -1,16 +1,18 @@
 import styled from "styled-components";
 
-import {bgDefaultButton, browShadowColor} from "./colors";
+import {bgDefaultButton, browShadowColor, darkColor} from "./colors";
 import { transitionAllEase } from "./helpers";
 
 export const ActionButton = styled.button`
   border: 0;
   cursor: pointer;
-  font-weight: 700;
   font-size: 0.90rem;
   padding: 12px 20px;
+  color: ${darkColor};
+  font-weight: bolder;
   border-radius: 50px;
   background-size: 150% 100%;
+  font-family: 'Comfortaa', san-serif;
   background-image: ${bgDefaultButton};
   box-shadow: 0 0 3px 0 ${browShadowColor};
   ${transitionAllEase}
