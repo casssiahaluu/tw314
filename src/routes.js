@@ -4,6 +4,7 @@ import { isAuthenticated } from "./services/auth";
 
 import About from "./pages/About";
 import AddTicket from "./pages/AddTicket";
+import App from "./pages/App";
 import Help from "./pages/Help";
 import Historic from "./pages/Historic";
 import SignUp from "./pages/SignUp";
@@ -33,6 +34,7 @@ const Routes = () => (
         <Route exact path="/"><SignUp /></Route>
         <Route path="/help"><Help /></Route>
         
+        <PrivateRoute path="/app"><App /></PrivateRoute>
         <PrivateRoute path="/add-ticket"><AddTicket /></PrivateRoute>
         <PrivateRoute path="/about"><About /></PrivateRoute>
         <PrivateRoute path="/historic"><Historic /></PrivateRoute>
