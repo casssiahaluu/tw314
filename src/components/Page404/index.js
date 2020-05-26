@@ -9,13 +9,11 @@ import logo from "../../assets/logo/icon_logo.png";
 export default function Page404 () {
   return (
     <Container>
-      <div className="logo">
-        <img src={logo} alt="Logo tw314" />
-      </div>
       <div>
         <h1>404</h1>
       </div>
       <div>
+        <img className="logo" src={logo} alt="Logo tw314" />
         <p>
           Encontrada a página não foi. <br />
           Voltar ao app você pode.

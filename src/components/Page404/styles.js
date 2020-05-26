@@ -33,7 +33,7 @@ export const Container = styled.div`
       max-width: 250px;
     }
 
-    &.logo {
+    .logo {
       max-width: 50px;
     }
   }
