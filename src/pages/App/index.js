@@ -10,17 +10,18 @@ export default function App () {
     <Page>
       <Container>
         <div>
-          <ResponsiveImg src={Logo} alt="tw314 logo" />
-        </div>
-        <div>
-          <p>
-            versão 1.0.0 <br />
-            2020 ©
+          <p className="ticket">
+            sua senha é: <span className="pass">TW314</span>
           </p>
         </div>
         <div>
-          <a href="mailto:haluanedecassia@gmail.com">deixar feedback</a><br />
-          <a href="/help">ajuda</a>
+          <i class="hourglass warn fas fa-hourglass-half"></i>
+          <p className="details">
+            <span className="message">ATENÇÃO</span> <br />
+            há <span className="people">5</span> pessoas na sua frente <br/>
+            tempo estimado: <span className="time">30 min</span> <br />
+            local: <span className="place">meu banco</span>
+          </p>
         </div>
       </Container>
     </Page>
