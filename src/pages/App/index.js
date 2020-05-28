@@ -1,9 +1,7 @@
 import React from "react";
 
 import Page from "../../components/Page";
-import { Container, ResponsiveImg } from "./styles";
-
-import Logo from "../../assets/logo/logo_vertical.png";
+import { Container } from "./styles";
 
 export default function App () {
   return (
