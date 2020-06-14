@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 
-// import api from "../../services/api";
-// import { getJwt, getToken, login } from "../../services/auth";
+import api from "../../services/api";
+import {
+  getId,
+  setTicket
+} from "../../services/auth";
 
 import { ActionButton } from "../../styles/button";
 
@@ -9,13 +12,32 @@ import { Container, InputGroup } from "./styles";
 
 import qrCodeIcon from "../../assets/icons/qrcode-icon.svg";
 
-export default function AddTicket (props) {
+export default function AddTicket () {
+  const [value, setValue] = useState("");
   const [error, setError] = useState("");
   const [info, setInfo] = useState("");
   
   function onClick() {
+    setError("")
     setInfo("Carregando. Aguarde...");
-    window.location.href = "/app";
+    if(value) {
+      api.get(`/tickets?ticket=${value}&userId=${getId()}&status=waiting`).then(res => {
+        if (res.data.length > 0) {
+          setTicket(JSON.stringify(res.data[0]));
+          setError("");
+          setInfo("Entrando no app...");
+          window.location.href = "/app";
+        } else {
+          setError(`Eita! Esse ticket não foi encontrado no nosso sistema
+          ou não é vinculado a esse usuário :(`);
+          setInfo("");
+        }
+      })
+    } else {
+      setError("Opa! O campo está em branco o.O")
+      setInfo("");
+    }
+    
   };
 
   return (
@@ -26,7 +48,7 @@ export default function AddTicket (props) {
       <div>
         <p>adicione a senha ou o qrcode</p>
         <InputGroup>
-          <input type="text" placeholder="ticket" />
+          <input type="text" placeholder="ticket" value={value} onChange={event => setValue(event.target.value)}/>
           <button onClick={() => alert('qrcode')}>
             <img src={qrCodeIcon} alt="tw314 logo" />
           </button>
