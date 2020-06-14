@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 
 import api from "../../services/api";
-import { getJwt, getToken, login } from "../../services/auth";
+import {
+  getJwt,
+  getToken,
+  login,
+  setId
+} from "../../services/auth";
 
 import { ActionButton } from "../../styles/button";
 
@@ -21,17 +26,18 @@ function SignUp (props) {
     setInfo("Carregando. Aguarde...");
 
     if(getToken()) {
-      redirect();
       console.log("Já existe token. Redirecionando para o App");
+      redirect();
     } else {
       console.log("Não há token. Criando e redirecionando para o App");
       api.post("/users", {
         token: getJwt()
-      }).then(() => {
+      }).then(res => {
         login(getJwt());
-        redirect();
+        setId(res.data.id);
         console.log("Token criado com sucesso! \\o/ Bem-vindx, nerd!");
         setInfo("Feito! \\o/ Entrando no aplicativo");
+        redirect();
       }).catch(() => {
         setInfo("");
         setError("Ops! Ocorreu um erro ao continuar T.T. Caso persista, entre em contato")
