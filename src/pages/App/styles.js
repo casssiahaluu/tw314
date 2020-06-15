@@ -15,8 +15,18 @@ export const Container = styled.div`
       font-size: 12rem;
       -webkit-text-fill-color: transparent;
       
+      &.danger {
+        background: linear-gradient(to right, #C80B47, #f75287);
+        -webkit-background-clip: text;
+      }
+
       &.warn {
         background: linear-gradient(to right, #FFD500, #BB7D11);
+        -webkit-background-clip: text;
+      }
+
+      &.info {
+        background: linear-gradient(to right, #1A9F1A, #92ff92);
         -webkit-background-clip: text;
       }
     }

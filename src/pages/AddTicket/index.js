@@ -23,7 +23,7 @@ export default function AddTicket () {
     if(value) {
       api.get(`/tickets?ticket=${value}&userId=${getId()}&status=waiting`).then(res => {
         if (res.data.length > 0) {
-          setTicket(JSON.stringify(res.data[0]));
+          setTicket(res.data[0].id);
           setError("");
           setInfo("Entrando no app...");
           window.location.href = "/app";
