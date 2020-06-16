@@ -1,5 +1,8 @@
 import React from "react";
 import api from "../../services/api";
+import {
+  getId
+} from "../../services/auth";
 
 import Page from "../../components/Page";
 import { Any, Container, Item } from "./styles";
@@ -31,16 +34,18 @@ export default function Historic () {
   }
 
   React.useEffect(() => {
-    getStars()
-    api.get("/historics?&_expand=rating").then(response => {      
-      setHistoric(response.data);
+    getStars();
+    api.get(`/historics?userId=${getId()}&_expand=rating&_expand=place`).then(res => {
+      setHistoric(res.data);
+      console.log(res.data);
+      
     }).catch(error => console.log(error));
   }, []);
   
   return (
     <Page title="histórico">
       <Container>
-        {historic ? historic.map((log, i) => ( 
+        {historic.length > 0 ? historic.map((log, i) => ( 
           <Item key={`historic_${i}`}>
             <div className="historic-date">
               {getDate(log.createdAt)}
@@ -49,10 +54,10 @@ export default function Historic () {
               <div className="infos">
                 <p>
                   <i className="fas fa-map-marker-alt"></i> 
-                  local: <span>{log.rating.placeName}</span></p>
+                  local: <span>{log.place.name}</span></p>
                 <p>
                   <i className="fas fa-hourglass-half"></i> 
-                  <span>{log.rating.placeAverageTime} min</span> de espera
+                  <span>{log.place.averageTime} min</span> de espera
                 </p>
               </div>
               <div className="stars">

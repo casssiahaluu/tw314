@@ -21,15 +21,24 @@ export default function AddTicket () {
     setError("")
     setInfo("Carregando. Aguarde...");
     if(value) {
-      api.get(`/tickets?ticket=${value}&userId=${getId()}&status=waiting`).then(res => {
+      api.get(`/tickets?ticket=${value}&status=waiting`).then(res => {
         if (res.data.length > 0) {
           setTicket(res.data[0].id);
           setError("");
-          setInfo("Entrando no app...");
-          window.location.href = "/app";
+          if (res.data[0].id === getId()) {
+            setInfo("Entrando no app...");
+            window.location.href = "/app";
+          } else {
+            api.patch(`/tickets/${res.data[0].id}`, {userId: getId()}).then(() => {
+              setInfo("Entrando no app...");
+              window.location.href = "/app";
+            }).catch(() => {
+              setInfo("");
+              setError(`Não foi possível vincular esse ticket a você. Tente mais tarde :(`);
+            })
+          }
         } else {
-          setError(`Eita! Esse ticket não foi encontrado no nosso sistema
-          ou não é vinculado a esse usuário :(`);
+          setError(`Eita! Esse ticket não foi encontrado ou já foi concluído :(`);
           setInfo("");
         }
       })
