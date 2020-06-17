@@ -1,15 +1,17 @@
 import React from "react";
 
+
+import Modal from "../Modal";
+
 import { Container, ContextMenu, Nav } from "./styles";
 
 import Logo from "../../assets/logo/logo_horizontal.png";
 
 export default function Page (props) {
   const [menu, toggleMenu] = React.useState(false);
-
-  function onClick() {
-    toggleMenu(!menu);
-  }
+  const [modalLeave, toggleModalLeave] = React.useState(false);
+  const [modalStars, toggleModalStars] = React.useState(false);
+  const [modalHistoric, toggleModalHistoric] = React.useState(false);
 
   return (
     <Container>
@@ -24,32 +26,84 @@ export default function Page (props) {
         ) : (
           <img src={Logo} height="32" alt="tw314 logo" />
         )}
-        <div className="menu" title="menu" onClick={() => onClick()}>
+        <div className="menu" title="menu" onClick={() => toggleMenu(!menu)}>
           <i className="fas fa-ellipsis-v"></i>
-          {menu && <ContextMenu>
-            <ul>
-              <a href="/help"><li>ajuda</li></a>
-              <a href="mailto:haluanedecassia@gmail.com"><li className="feedback">feedback</li></a>
-              <a href="/about"><li>sobre</li></a>
-            </ul>
-          </ContextMenu>}
+          {menu && (
+            <ContextMenu>
+              <ul>
+                <a href="/help">
+                  <li>ajuda</li>
+                </a>
+                <a href="mailto:haluanedecassia@gmail.com">
+                  <li className="feedback">feedback</li>
+                </a>
+                <a href="/about">
+                  <li>sobre</li>
+                </a>
+              </ul>
+            </ContextMenu>
+          )}
         </div>
       </Nav>
       {props.children}
       <Nav className="bottom">
-        <a href="/#" title="sair da file">
+        <button
+          onClick={() => toggleModalLeave(!modalLeave)}
+          title="sair da file"
+        >
           <i className="fas fa-times"></i>
-        </a>
-        <a href="/#" title="avaliar local">
+        </button>
+        <button
+          onClick={() => toggleModalStars(!modalStars)}
+          title="avaliar local"
+        >
           <i className="fas fa-star"></i>
-        </a>
-        <a href="/#" title="adicionar ao histórico">
+        </button>
+        <button
+          onClick={() => toggleModalHistoric(!modalHistoric)}
+          title="adicionar ao histórico"
+        >
           <i className="far fa-check-circle"></i>
-        </a>
+        </button>
         <a href="/historic" title="ver histórico">
           <i className="far fa-clock"></i>
         </a>
       </Nav>
+      {modalLeave && (
+        <Modal
+          id="modal-leave"
+          title="sair da fila"
+          icon="fas fa-times"
+          isOpen={modalLeave}
+          onClose={toggleModalLeave}
+        >
+          <div className="box-body">
+            Se você continuar, sairá da fila. É isso mesmo?
+          </div>
+        </Modal>
+      )}
+      {modalStars && (
+        <Modal
+          id="modal-rating"
+          title="avaliar"
+          isOpen={modalStars}
+          onClose={toggleModalStars}
+        >
+          <div className="box-body">
+            Avalie seu tempo de espera e atendimento
+          </div>
+        </Modal>
+      )}
+      {modalHistoric && (
+        <Modal
+          id="modal-add-historic"
+          title="adicionar ao histórico"
+          isOpen={modalHistoric}
+          onClose={toggleModalHistoric}
+        >
+          <div className="box-body">historico</div>
+        </Modal>
+      )}
     </Container>
   );
 };
