@@ -65,7 +65,7 @@ export default function Historic () {
               </div>
             </div>
           </Item>
-        )) : <Any>Eita! Parece que não tem nenhum histórico aqui! Mas tá tudo certo, só  adicionar algum enquanto estiver na fila que vai aparecer aqui <span role="img" aria-label="emoji piscando">&#128521;</span></Any>}
+        )) : <Any>Parece que não tem nenhum histórico aqui! Mas tá tudo certo, só  adicionar algum enquanto estiver na fila que vai aparecer <span role="img" aria-label="emoji piscando">&#128521;</span></Any>}
       </Container>
     </Page>
   );
