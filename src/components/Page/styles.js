@@ -23,7 +23,7 @@ export const Nav = styled.nav`
   position: fixed;
   align-items: center;
 
-  a {
+  a, button {
     color: ${darkColor};
     
     ${hoverColor}
@@ -31,15 +31,18 @@ export const Nav = styled.nav`
 
   &.bottom {
     bottom: 0;
-    font-size: 42px;
     text-align: center;
     justify-content: center;
     box-shadow: 0 0 6px ${shadowColor};
     background-color: ${lightColor};
 
-    a {
+    a, button {
+      border: none;
+      cursor: pointer;
+      font-size: 42px;
       margin auto 20px;
-  
+      background: transparent;
+      
       .fa-times {
         font-size: 52px;
       }
