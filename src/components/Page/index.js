@@ -13,6 +13,12 @@ export default function Page (props) {
   const [modalStars, toggleModalStars] = React.useState(false);
   const [modalHistoric, toggleModalHistoric] = React.useState(false);
 
+  const configButton = {
+    labelClose: "não",
+    labelAction: "sim",
+    action: () => console.log("clicou no botão"),
+  };
+
   return (
     <Container>
       <Nav className="top">
@@ -74,7 +80,9 @@ export default function Page (props) {
           id="modal-leave"
           title="sair da fila"
           icon="fas fa-times"
+          type="danger"
           isOpen={modalLeave}
+          actionButton={configButton}
           onClose={toggleModalLeave}
         >
           <div className="box-body">
