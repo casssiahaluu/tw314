@@ -37,10 +37,11 @@ export const Nav = styled.nav`
     background-color: ${lightColor};
 
     a, button {
+      padding: 0;
       border: none;
       cursor: pointer;
       font-size: 42px;
-      margin auto 20px;
+      margin: auto 18px;
       background: transparent;
       
       .fa-times {
