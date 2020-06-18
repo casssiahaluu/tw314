@@ -14,6 +14,7 @@ export default function Modal (props) {
   const [fadeType, setFadeType] = React.useState('');
 
   React.useEffect((prevProps) => {
+    
     setTimeout(() => setFadeType("in"), 0);
 
     if (!props.isOpen && prevProps.isOpen) {
@@ -45,19 +46,29 @@ export default function Modal (props) {
       onTransitionEnd={transitionEnd}
     >
       <div className="box-dialog">
-        <div className="box-header">
+        <div className={`box-header ${props.type}`}>
           <h4 className="box-title">
-            <i class={`box-icon ${props.icon}`}></i> {props.title}
+            <i className={`box-icon ${props.icon}`}></i> {props.title}
           </h4>
           <button onClick={handleClick} className="close">
-            ×
+            <i className="far fa-times-circle"></i>
           </button>
         </div>
         <div className="box-content">{props.children}</div>
         <div className="box-footer">
-          <button onClick={handleClick} className="close">
-            Close
-          </button>
+          {props.actionButton && (
+            <React.Fragment>
+              <button onClick={handleClick} className="close-button">
+                {props.actionButton.labelClose}
+              </button>
+              <button
+                onClick={props.actionButton.action}
+                className={`action-button ${props.type}`}
+              >
+                {props.actionButton.labelAction}
+              </button>
+            </React.Fragment>
+          )}
         </div>
       </div>
       <div
