@@ -111,6 +111,7 @@ export const StyledModal = styled.div`
              font-family: "Comfortaa", san-serif;
 
              button {
+               cursor: pointer;
                padding: 0 10px;
                font-size: 0.85rem;
 
@@ -125,7 +126,6 @@ export const StyledModal = styled.div`
 
                &.action-button {
                  border: 0;
-                 cursor: pointer;
                  font-weight: 400;
                  border-radius: 50px;
                  color: ${lightColor};

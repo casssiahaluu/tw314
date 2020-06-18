@@ -50,9 +50,6 @@ export default function Modal (props) {
           <h4 className="box-title">
             <i className={`box-icon ${props.icon}`}></i> {props.title}
           </h4>
-          <button onClick={handleClick} className="close">
-            <i className="far fa-times-circle"></i>
-          </button>
         </div>
         <div className="box-content">{props.children}</div>
         <div className="box-footer">
