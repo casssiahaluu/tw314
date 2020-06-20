@@ -18,8 +18,8 @@ export const Container = styled.div`
 
 export const Nav = styled.nav`
   width: 100%;
-  height: 4rem;
   display: flex;
+  height: 3.5rem;
   position: fixed;
   align-items: center;
 
@@ -40,12 +40,16 @@ export const Nav = styled.nav`
       padding: 0;
       border: none;
       cursor: pointer;
-      font-size: 42px;
-      margin: auto 18px;
+      font-size: 28px;
+      margin: auto 12px;
       background: transparent;
       
       .fa-times {
-        font-size: 52px;
+        font-size: 38px;
+      }
+
+      .fa-home {
+        font-size: 40px;
       }
     }
   }

@@ -110,6 +110,10 @@ export const StyledModal = styled.div`
              justify-content: flex-end;
              font-family: "Comfortaa", san-serif;
 
+             &.rating {
+               justify-content: center;
+             }
+
              button {
                cursor: pointer;
                padding: 0 10px;

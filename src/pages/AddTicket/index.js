@@ -21,15 +21,22 @@ export default function AddTicket () {
     setError("")
     setInfo("Carregando. Aguarde...");
     if(value) {
-      api.get(`/tickets?ticket=${value}&status=waiting`).then(res => {
+      api.get(`/tickets?ticket=${value}&status!=done`).then(res => {
         if (res.data.length > 0) {
           setTicket(res.data[0].id);
           setError("");
           if (res.data[0].id === getId()) {
-            setInfo("Entrando no app...");
-            window.location.href = "/app";
+            if(res.data[0].status === "waiting") {
+              setInfo("Entrando no app...");
+              window.location.href = "/app";
+            } else {
+              setError(
+                `Esse ticket foi removido da fila! o.O`
+              );
+              setInfo("");
+            }
           } else {
-            api.patch(`/tickets/${res.data[0].id}`, {userId: getId()}).then(() => {
+            api.patch(`/tickets/${res.data[0].id}`, {userId: getId(), status: "waiting"}).then(() => {
               setInfo("Entrando no app...");
               window.location.href = "/app";
             }).catch(() => {

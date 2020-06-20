@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDom from "react-dom";
 
+import RatingStars from "../RatingStars";
 // styled
 import {
   StyledModal
@@ -38,9 +39,7 @@ export default function Modal (props) {
   return ReactDom.createPortal(
     <StyledModal
       id={props.id}
-      className={`wrapper ${"size-" + props.modalSize} fade-${fadeType} ${
-        props.modalClass
-      }`}
+      className={`wrapper fade-${fadeType} ${props.className}`}
       role="dialog"
       modalSize={props.modalSize}
       onTransitionEnd={transitionEnd}
@@ -52,20 +51,20 @@ export default function Modal (props) {
           </h4>
         </div>
         <div className="box-content">{props.children}</div>
-        <div className="box-footer">
-          {props.actionButton && (
+        <div className={`box-footer ${props.type}`}>
+          {props.type === 'rating' ? <RatingStars onRating={props.onRating} /> : (props.actionButton && (
             <React.Fragment>
-              <button onClick={handleClick} className="close-button">
-                {props.actionButton.labelClose}
-              </button>
-              <button
-                onClick={props.actionButton.action}
-                className={`action-button ${props.type}`}
-              >
-                {props.actionButton.labelAction}
-              </button>
+                <button onClick={handleClick} className="close-button">
+                  {props.actionButton.labelClose}
+                </button>
+                <button
+                  onClick={props.actionButton.action}
+                  className={`action-button ${props.type}`}
+                >
+                  {props.actionButton.labelAction}
+                </button>
             </React.Fragment>
-          )}
+          ))}
         </div>
       </div>
       <div

@@ -45,27 +45,36 @@ export default function Historic () {
   return (
     <Page title="histórico">
       <Container>
-        {historic.length > 0 ? historic.map((log, i) => ( 
-          <Item key={`historic_${i}`}>
-            <div className="historic-date">
-              {getDate(log.createdAt)}
-            </div>
-            <div className="historic-details">
-              <div className="infos">
-                <p>
-                  <i className="fas fa-map-marker-alt"></i> 
-                  local: <span>{log.place.name}</span></p>
-                <p>
-                  <i className="fas fa-hourglass-half"></i> 
-                  <span>{log.place.averageTime} min</span> de espera
-                </p>
+        {historic.length > 0 ? (
+          historic.map((log, i) => (
+            <Item key={`historic_${i}`}>
+              <div className="historic-date">{getDate(log.createdAt)}</div>
+              <div className="historic-details">
+                <div className="infos">
+                  <p>
+                    <i className="fas fa-map-marker-alt"></i>
+                    local: <span>{log.place.name}</span>
+                  </p>
+                  <p>
+                    <i className="fas fa-hourglass-half"></i>
+                    <span>{log.place.averageTime} min</span> de espera
+                  </p>
+                </div>
+                <div className="stars">
+                  {log.rating ? getStars(log.rating.stars) : "não avaliado"}
+                </div>
               </div>
-              <div className="stars">
-                {getStars(log.rating.stars)}
-              </div>
-            </div>
-          </Item>
-        )) : <Any>Parece que não tem nenhum histórico aqui! Mas tá tudo certo, só  adicionar algum enquanto estiver na fila que vai aparecer <span role="img" aria-label="emoji piscando">&#128521;</span></Any>}
+            </Item>
+          ))
+        ) : (
+          <Any>
+            Parece que não tem nenhum histórico aqui! Mas tá tudo certo, só
+            adicionar algum enquanto estiver na fila que vai aparecer{" "}
+            <span role="img" aria-label="emoji piscando">
+              &#128521;
+            </span>
+          </Any>
+        )}
       </Container>
     </Page>
   );

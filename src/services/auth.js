@@ -5,6 +5,7 @@ export const ID_KEY = "@tw314-ID";
 export const TICKET_KEY = "@tw314-ticket";
 
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
+export const hasTitcket = () => localStorage.getItem(TICKET_KEY) !== null;
 
 export const getJwt = () => jwt.sign({}, "tw314p@ssw0rd");
 export const getToken = () => localStorage.getItem(TOKEN_KEY);

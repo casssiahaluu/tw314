@@ -1,6 +1,7 @@
 import React from "react";
 
-
+import api from "../../services/api";
+import { getId, getTicket } from "../../services/auth";
 import Modal from "../Modal";
 
 import { Container, ContextMenu, Nav } from "./styles";
@@ -13,11 +14,96 @@ export default function Page (props) {
   const [modalStars, toggleModalStars] = React.useState(false);
   const [modalHistoric, toggleModalHistoric] = React.useState(false);
 
-  const configButton = {
+
+  const [info, setInfo] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [ticketInfo, setTicketInfo] = React.useState("");
+  const [rating, setRating] = React.useState();
+
+  const configLeave = {
     labelClose: "não",
     labelAction: "sim",
-    action: () => console.log("clicou no botão"),
+    action: () => exitQueue(),
   };
+
+  const configHistoric = {
+    labelClose: "não",
+    labelAction: "sim",
+    action: () => addHistoric(),
+  };
+
+  function exitQueue() {
+    setInfo("");
+    setError("");
+
+    api.patch(`/tickets/${getTicket()}`, {status: "canceled"}).then(() => {
+      window.location.href = "/add-ticket";
+      setInfo("saindo da fila...");
+      setError("");
+    }).catch(() => {
+      setInfo("");
+      setError(`Não foi possível vincular esse ticket a você. Tente mais tarde :(`);
+    })
+  }
+
+  function addHistoric() {
+    setInfo("");
+    setError("");
+
+    api
+      .post(`/historics`, {
+        ratingId: rating ? rating.id : 0,
+        ticketId: parseInt(getTicket()),
+        placeId: ticketInfo.queue.placeId,
+        userId: parseInt(getId())
+      })
+      .then(() => {
+        setInfo("Adicionado");
+        setError("");
+        toggleModalHistoric(false);
+      })
+      .catch(() => {
+        setInfo("");
+        setError(
+          `Não foi possível adicionar ao histórico. Tente mais tarde :(`
+        );
+      });
+  }
+
+  function onRating(ratingValue) {
+    setRating(ratingValue);
+
+    api.get(`/ratings?userId=${getId()}`).then((res) => {
+      console.log();
+    });
+    api
+      .post(`/ratings`, {
+        stars: rating || 0,
+        ticketId: parseInt(getTicket()),
+        userId: parseInt(getId()),
+      })
+      .then(() => {
+        setInfo("Adicionado");
+        setError("");
+      })
+      .catch(() => {
+        setInfo("");
+        setError(
+          "Não foi possível adicionar ao histórico. Tente mais tarde :("
+        );
+      });
+  }
+
+  React.useEffect(() => {
+    api
+      .get(`/tickets/${getTicket()}?&_expand=queue`)
+      .then((res) => {
+        setTicketInfo(res.data);
+        console.log(res.data);
+        
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   return (
     <Container>
@@ -65,6 +151,9 @@ export default function Page (props) {
         >
           <i className="fas fa-star"></i>
         </button>
+        <a href="/app" title="Home">
+          <i className="fas fa-home"></i>
+        </a>
         <button
           onClick={() => toggleModalHistoric(!modalHistoric)}
           title="adicionar ao histórico"
@@ -82,34 +171,49 @@ export default function Page (props) {
           icon="fas fa-times"
           type="danger"
           isOpen={modalLeave}
-          actionButton={configButton}
+          actionButton={configLeave}
           onClose={toggleModalLeave}
         >
           <div className="box-body">
             Se você continuar, sairá da fila. É isso mesmo?
+            {error && <p className="error">{error}</p>}
+            {info && <p className="info">{info}</p>}
           </div>
         </Modal>
       )}
       {modalStars && (
         <Modal
-          id="modal-rating"
+          type="rating"
           title="avaliar"
+          id="modal-rating"
+          icon="fas fa-star"
           isOpen={modalStars}
           onClose={toggleModalStars}
+          onRating={onRating}
+          // actionButton={}
         >
           <div className="box-body">
             Avalie seu tempo de espera e atendimento
+            {error && <p className="error">{error}</p>}
+            {info && <p className="info">{info}</p>}
           </div>
         </Modal>
       )}
       {modalHistoric && (
         <Modal
+          type="success"
+          icon="fas fa-clock"
           id="modal-add-historic"
           title="adicionar ao histórico"
           isOpen={modalHistoric}
+          actionButton={configHistoric}
           onClose={toggleModalHistoric}
         >
-          <div className="box-body">historico</div>
+          <div className="box-body">
+            gostaria de adicionar ess ticket ao histórico?
+            {error && <p className="error">{error}</p>}
+            {info && <p className="info">{info}</p>}
+          </div>
         </Modal>
       )}
     </Container>
