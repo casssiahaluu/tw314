@@ -52,8 +52,11 @@ export default function Modal (props) {
         </div>
         <div className="box-content">{props.children}</div>
         <div className={`box-footer ${props.type}`}>
-          {props.type === 'rating' ? <RatingStars onRating={props.onRating} /> : (props.actionButton && (
-            <React.Fragment>
+          {props.type === "rating" ? (
+            <RatingStars getRatingId={props.getRatingId} />
+          ) : (
+            props.actionButton && (
+              <React.Fragment>
                 <button onClick={handleClick} className="close-button">
                   {props.actionButton.labelClose}
                 </button>
@@ -63,8 +66,9 @@ export default function Modal (props) {
                 >
                   {props.actionButton.labelAction}
                 </button>
-            </React.Fragment>
-          ))}
+              </React.Fragment>
+            )
+          )}
         </div>
       </div>
       <div

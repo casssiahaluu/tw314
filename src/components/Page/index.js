@@ -14,11 +14,11 @@ export default function Page (props) {
   const [modalStars, toggleModalStars] = React.useState(false);
   const [modalHistoric, toggleModalHistoric] = React.useState(false);
 
-
   const [info, setInfo] = React.useState("");
   const [error, setError] = React.useState("");
   const [ticketInfo, setTicketInfo] = React.useState("");
-  const [rating, setRating] = React.useState();
+  const [rating, setRating] = React.useState(0);
+  const [historic, setHistoric] = React.useState([]);
 
   const configLeave = {
     labelClose: "não",
@@ -46,13 +46,27 @@ export default function Page (props) {
     })
   }
 
+  function getRatingId(id) {
+    setRating(id);
+
+    api.get(`/historic?userId=${getId()}&ticketId=${getTicket()}`)
+    .then((res) => {
+      if (res.data.length > 0) {
+        
+      }
+    })
+    .catch((err) => {
+      console.error("Erro ao buscar avaliação anterior: ", err);
+    });
+  }
+
   function addHistoric() {
     setInfo("");
     setError("");
 
-    api
-      .post(`/historics`, {
-        ratingId: rating ? rating.id : 0,
+    if(historic.length <= 0) {
+      api.post(`/historics`, {
+        ratingId: rating,
         ticketId: parseInt(getTicket()),
         placeId: ticketInfo.queue.placeId,
         userId: parseInt(getId())
@@ -68,41 +82,25 @@ export default function Page (props) {
           `Não foi possível adicionar ao histórico. Tente mais tarde :(`
         );
       });
-  }
-
-  function onRating(ratingValue) {
-    setRating(ratingValue);
-
-    api.get(`/ratings?userId=${getId()}`).then((res) => {
-      console.log();
-    });
-    api
-      .post(`/ratings`, {
-        stars: rating || 0,
-        ticketId: parseInt(getTicket()),
-        userId: parseInt(getId()),
-      })
-      .then(() => {
-        setInfo("Adicionado");
-        setError("");
-      })
-      .catch(() => {
-        setInfo("");
-        setError(
-          "Não foi possível adicionar ao histórico. Tente mais tarde :("
-        );
-      });
+    }
   }
 
   React.useEffect(() => {
-    api
-      .get(`/tickets/${getTicket()}?&_expand=queue`)
-      .then((res) => {
-        setTicketInfo(res.data);
-        console.log(res.data);
-        
-      })
-      .catch((err) => console.error(err));
+    api.get(`/tickets/${getTicket()}?&_expand=queue`)
+    .then((res) => {
+      setTicketInfo(res.data);        
+    })
+    .catch((err) => console.error("Erro ao buscar ticket", err));
+
+    api.get(`/historics?userId=${getId()}&ticketId=${getTicket()}`)
+    .then((res) => {
+      if (res.data.length > 0) {
+        setHistoric(res.data[0])
+      }
+    })
+    .catch((err) => {
+      console.error("Erro ao buscar histórico", err);
+    });
   }, []);
 
   return (
@@ -189,8 +187,7 @@ export default function Page (props) {
           icon="fas fa-star"
           isOpen={modalStars}
           onClose={toggleModalStars}
-          onRating={onRating}
-          // actionButton={}
+          getRatingId={getRatingId}
         >
           <div className="box-body">
             Avalie seu tempo de espera e atendimento
@@ -206,11 +203,17 @@ export default function Page (props) {
           id="modal-add-historic"
           title="adicionar ao histórico"
           isOpen={modalHistoric}
-          actionButton={configHistoric}
+          actionButton={historic.length > 0 ? undefined : configHistoric}
           onClose={toggleModalHistoric}
         >
           <div className="box-body">
-            gostaria de adicionar ess ticket ao histórico?
+            {historic.length > 0 ? (
+              <span>
+                já existe um histórico para esse ticket <span role="img" aria-label="piscando e mostrando a linguinha">&#128540;</span>
+              </span>
+            ) : (
+              "gostaria de adicionar ess ticket ao histórico?"
+            )}
             {error && <p className="error">{error}</p>}
             {info && <p className="info">{info}</p>}
           </div>
