@@ -4,6 +4,7 @@ import api from "../../services/api";
 import {
   getTicket
 } from "../../services/auth";
+import { askPermissionNotifications } from '../../push-notification';
 
 import Page from "../../components/Page";
 import { Container } from "./styles";
@@ -23,6 +24,8 @@ export default function App () {
   }
 
   React.useEffect(() => {
+    askPermissionNotifications();
+
     api.get(`/tickets/${getTicket()}?&_expand=queue`).then(res => {
       setTicketInfo(res.data);
       api.get(`/places/${res.data.queue.placeId}`).then(res => setPlace(res.data.name)).catch(err => console.error(err))

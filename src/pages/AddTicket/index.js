@@ -9,7 +9,6 @@ import {
 import { ActionButton } from "../../styles/button";
 
 import { Container, InputGroup } from "./styles";
-
 import qrCodeIcon from "../../assets/icons/qrcode-icon.svg";
 
 export default function AddTicket () {
@@ -53,7 +52,6 @@ export default function AddTicket () {
       setError("Opa! O campo está em branco o.O")
       setInfo("");
     }
-    
   };
 
   return (
