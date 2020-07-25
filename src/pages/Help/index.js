@@ -1,8 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 
-import Page from "../../components/Page";
-import Collapse from "../../components/Collapse";
 import { Container } from "./styles";
+
+const Page = React.lazy(() => import("../../components/Page"));
+const Collapse = React.lazy(() => import("../../components/Collapse"));
+
+const renderLoader = () => <i class="fas fa-spinner fa-spin"></i>;
 
 export default function Help () {
   const [faqs, setFaqs] = React.useState([{
@@ -28,12 +31,14 @@ export default function Help () {
   }
 
   return (
-    <Page title="ajuda">
-      <Container>
-        {faqs.map((faq, i) => (
-          <Collapse faq={faq} index={i} toggle={toggleCollapse} />
-        ))}
-      </Container>
-    </Page>
+    <Suspense fallback={renderLoader()}>
+      <Page title="ajuda">
+        <Container>
+          {faqs.map((faq, i) => (
+            <Collapse faq={faq} index={i} toggle={toggleCollapse} />
+          ))}
+        </Container>
+      </Page>
+    </Suspense>
   );
 }

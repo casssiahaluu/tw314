@@ -13,7 +13,7 @@ html, body {
   text-rendering: optimizeLegibility !important;
   -webkit-font-smoothing: antialiased !important;
   font-family: Comfortaa, san-serif;
-
+  
   p {
     &.error {
       font-weight: 600;
@@ -26,6 +26,7 @@ html, body {
       font-size: 0.8rem;
     }
   }
+  
   a {
     color: ${linkTextColor};
     

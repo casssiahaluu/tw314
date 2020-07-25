@@ -1,11 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
+
 import api from "../../services/api";
 import {
   getId
 } from "../../services/auth";
 
-import Page from "../../components/Page";
 import { Any, Container, Item } from "./styles";
+
+const Page = React.lazy(() => import("../../components/Page"));
+
+const renderLoader = () => <i class="fas fa-spinner fa-spin"></i>;
 
 export default function Historic () {
   const [historic, setHistoric] = React.useState([]);
@@ -43,39 +47,41 @@ export default function Historic () {
   }, []);
   
   return (
-    <Page title="histórico">
-      <Container>
-        {historic.length > 0 ? (
-          historic.map((log, i) => (
-            <Item key={`historic_${i}`}>
-              <div className="historic-date">{getDate(log.createdAt)}</div>
-              <div className="historic-details">
-                <div className="infos">
-                  <p>
-                    <i className="fas fa-map-marker-alt"></i>
-                    local: <span>{log.place.name}</span>
-                  </p>
-                  <p>
-                    <i className="fas fa-hourglass-half"></i>
-                    <span>{log.place.averageTime} min</span> de espera
-                  </p>
+    <Suspense fallback={renderLoader()}>
+      <Page title="histórico">
+        <Container>
+          {historic.length > 0 ? (
+            historic.map((log, i) => (
+              <Item key={`historic_${i}`}>
+                <div className="historic-date">{getDate(log.createdAt)}</div>
+                <div className="historic-details">
+                  <div className="infos">
+                    <p>
+                      <i className="fas fa-map-marker-alt"></i>
+                      local: <span>{log.place.name}</span>
+                    </p>
+                    <p>
+                      <i className="fas fa-hourglass-half"></i>
+                      <span>{log.place.averageTime} min</span> de espera
+                    </p>
+                  </div>
+                  <div className="stars">
+                    {log.rating ? getStars(log.rating.stars) : "não avaliado"}
+                  </div>
                 </div>
-                <div className="stars">
-                  {log.rating ? getStars(log.rating.stars) : "não avaliado"}
-                </div>
-              </div>
-            </Item>
-          ))
-        ) : (
-          <Any>
-            Parece que não tem nenhum histórico aqui! Mas tá tudo certo, só
-            adicionar algum enquanto estiver na fila que vai aparecer{" "}
-            <span role="img" aria-label="emoji piscando">
-              &#128521;
-            </span>
-          </Any>
-        )}
-      </Container>
-    </Page>
+              </Item>
+            ))
+          ) : (
+            <Any>
+              Parece que não tem nenhum histórico aqui! Mas tá tudo certo, só
+              adicionar algum enquanto estiver na fila que vai aparecer{" "}
+              <span role="img" aria-label="emoji piscando">
+                &#128521;
+              </span>
+            </Any>
+          )}
+        </Container>
+      </Page>
+    </Suspense>
   );
 }

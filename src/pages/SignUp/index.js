@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 
 import api from "../../services/api";
 import {
@@ -13,6 +13,8 @@ import { ActionButton } from "../../styles/button";
 import { Form, Container } from "./styles";
 
 import Logo from "../../assets/logo/logo_vertical.png";
+
+const renderLoader = () => <i class="fas fa-spinner fa-spin"></i>;
 
 function SignUp (props) {
   const [error, setError] = useState("");
@@ -46,17 +48,19 @@ function SignUp (props) {
   };
 
   return (
-    <Container>
-      <Form>
-        <img src={Logo} height="250" alt="tw314 logo" />
-        <p>
-          para continuar usando nosso aplicativo você precisa aceitar nossos <a href="/#">termos de uso</a>.<br />
-          deseja continuar?</p>
-        <ActionButton onClick={() => onClick()}>aceitar e entrar</ActionButton>
-        {info && <p className="info">{info}</p>}
-        {error && <p className="error">{error}</p>}
-      </Form>
-    </Container>
+    <Suspense fallback={renderLoader()}>
+      <Container>
+        <Form>
+          <img src={Logo} height="250" alt="tw314 logo" />
+          <p>
+            para continuar usando nosso aplicativo você precisa aceitar nossos <a href="/#">termos de uso</a>.<br />
+            deseja continuar?</p>
+          <ActionButton onClick={() => onClick()}>aceitar e entrar</ActionButton>
+          {info && <p className="info">{info}</p>}
+          {error && <p className="error">{error}</p>}
+        </Form>
+      </Container>
+    </Suspense>
   );
 }
 

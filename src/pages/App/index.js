@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import api from "../../services/api";
 import {
@@ -6,8 +6,11 @@ import {
 } from "../../services/auth";
 import { askPermissionNotifications } from '../../push-notification';
 
-import Page from "../../components/Page";
 import { Container } from "./styles";
+
+const Page  = React.lazy(() => import( "../../components/Page"));
+
+const renderLoader = () => <i class="fas fa-spinner fa-spin"></i>;
 
 export default function App () {
   const [ticketInfo, setTicketInfo] = React.useState(undefined);
@@ -33,27 +36,29 @@ export default function App () {
   }, []);
   
   return (
-    <Page>
-      <Container>
-        {ticketInfo ? (
-          <React.Fragment>
-            <div>
-              <p className="ticket">
-                sua senha é: <span className="pass">{ticketInfo.ticket}</span>
-              </p>
-            </div>
-            <div>
-              <i className={`hourglass ${getColors()} `}></i>
-              <p className="details">
-                <span className="message">ATENÇÃO</span> <br />
-                você está na <span className="people">{ticketInfo.position}ª posição</span> da fila <br/>
-                tempo estimado: <span className="time">{ticketInfo.waitingTime} min</span> <br />
-                local: <span className="place">{place}</span>
-              </p>
-            </div>
-          </React.Fragment>
-        ): <h3>não há nenhum ticket aguardado aqui! <br /><small>vá para <a href="/add-ticket">adicionar ticket</a> para acompanhar um</small></h3>}
-      </Container>
-    </Page>
+    <Suspense fallback={renderLoader()}>
+      <Page>
+        <Container>
+          {ticketInfo ? (
+            <React.Fragment>
+              <div>
+                <p className="ticket">
+                  sua senha é: <span className="pass">{ticketInfo.ticket}</span>
+                </p>
+              </div>
+              <div>
+                <i className={`hourglass ${getColors()} `}></i>
+                <p className="details">
+                  <span className="message">ATENÇÃO</span> <br />
+                  você está na <span className="people">{ticketInfo.position}ª posição</span> da fila <br/>
+                  tempo estimado: <span className="time">{ticketInfo.waitingTime} min</span> <br />
+                  local: <span className="place">{place}</span>
+                </p>
+              </div>
+            </React.Fragment>
+          ): <h3>não há nenhum ticket aguardado aqui! <br /><small>vá para <a href="/add-ticket">adicionar ticket</a> para acompanhar um</small></h3>}
+        </Container>
+      </Page>
+    </Suspense>
   );
 }

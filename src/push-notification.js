@@ -15,7 +15,7 @@ export const initializeFirebase = () => {
   firebase.analytics();
 
   navigator.serviceWorker
-  .register('../service-worker.js')
+  .register('./serviceWorker.js')
   .then((registration) => {
     firebase.messaging().useServiceWorker(registration);
   });

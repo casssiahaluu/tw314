@@ -1,9 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import api from "../../services/api";
 
 import { getId, getTicket } from "../../services/auth";
 
 import { Stars } from "./styles";
+
+const renderLoader = () => <i className="fas fa-spinner fa-spin"></i>;
 
 export default function RatingStars (props) {
   const [rating, setRating] = React.useState(0);
@@ -63,30 +65,32 @@ export default function RatingStars (props) {
   }, []);
 
   return (
-    <Stars>
-      {[...Array(5)].map((star, index) => {
-        const ratingValue = index + 1;
+    <Suspense fallback={renderLoader}>
+      <Stars>
+        {[...Array(5)].map((star, index) => {
+          const ratingValue = index + 1;
 
-        return (
-          <label key={`star${index}`}>
-            <input
-              type="radio"
-              name="rating"
-              value={ratingValue}
-              onClick={() => onRating(ratingValue)}
-            />
-            <i
-              onMouseEnter={() => setHover(ratingValue)}
-              onMouseLeave={() => setHover(null)}
-              className={`fa${
-                ratingValue <= (hover || rating) ? "s" : "r"
-              } fa-star`}
-            />
-          </label>
-        );
-      })}
-      {info && <p className="info">{info}</p>}
-      {error && <p className="error">{error}</p>}
-    </Stars>
+          return (
+            <label key={`star${index}`}>
+              <input
+                type="radio"
+                name="rating"
+                value={ratingValue}
+                onClick={() => onRating(ratingValue)}
+              />
+              <i
+                onMouseEnter={() => setHover(ratingValue)}
+                onMouseLeave={() => setHover(null)}
+                className={`fa${
+                  ratingValue <= (hover || rating) ? "s" : "r"
+                } fa-star`}
+              />
+            </label>
+          );
+        })}
+        {info && <p className="info">{info}</p>}
+        {error && <p className="error">{error}</p>}
+      </Stars>
+    </Suspense>
   );
 };

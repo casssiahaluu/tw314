@@ -1,12 +1,15 @@
-import React from "react";
+import React, { Suspense } from "react";
 
 import api from "../../services/api";
 import { getId, getTicket } from "../../services/auth";
-import Modal from "../Modal";
 
 import { Container, ContextMenu, Nav } from "./styles";
 
 import Logo from "../../assets/logo/logo_horizontal.png";
+
+const Modal = React.lazy(() => import('../Modal'));
+
+const renderLoader = () => <i className="fas fa-spinner fa-spin"></i>;
 
 export default function Page (props) {
   const [menu, toggleMenu] = React.useState(false);
@@ -104,121 +107,123 @@ export default function Page (props) {
   }, []);
 
   return (
-    <Container>
-      <Nav className="top">
-        {props.title ? (
-          <React.Fragment>
-            <a href="/app" title="voltar para home">
-              <i className="fas fa-arrow-left"></i>
-            </a>
-            <span>{props.title}</span>
-          </React.Fragment>
-        ) : (
-          <img src={Logo} height="32" alt="tw314 logo" />
-        )}
-        <div className="menu" title="menu" onClick={() => toggleMenu(!menu)}>
-          <i className="fas fa-ellipsis-v"></i>
-          {menu && (
-            <ContextMenu>
-              <ul>
-                <a href="/help">
-                  <li>ajuda</li>
-                </a>
-                <a href="mailto:haluanedecassia@gmail.com">
-                  <li className="feedback">feedback</li>
-                </a>
-                <a href="/about">
-                  <li>sobre</li>
-                </a>
-              </ul>
-            </ContextMenu>
+    <Suspense fallback={renderLoader()}>
+      <Container>
+        <Nav className="top">
+          {props.title ? (
+            <React.Fragment>
+              <a href="/app" title="voltar para home">
+                <i className="fas fa-arrow-left"></i>
+              </a>
+              <span>{props.title}</span>
+            </React.Fragment>
+          ) : (
+            <img src={Logo} height="32" alt="tw314 logo" />
           )}
-        </div>
-      </Nav>
-      {props.children}
-      <Nav className="bottom">
-        <button
-          onClick={() => toggleModalLeave(!modalLeave)}
-          title="sair da file"
-        >
-          <i className="fas fa-times"></i>
-        </button>
-        <button
-          onClick={() => toggleModalStars(!modalStars)}
-          title="avaliar local"
-        >
-          <i className="fas fa-star"></i>
-        </button>
-        <a href="/app" title="Home">
-          <i className="fas fa-home"></i>
-        </a>
-        <button
-          onClick={() => toggleModalHistoric(!modalHistoric)}
-          title="adicionar ao histórico"
-        >
-          <i className="far fa-check-circle"></i>
-        </button>
-        <a href="/historic" title="ver histórico">
-          <i className="far fa-clock"></i>
-        </a>
-      </Nav>
-      {modalLeave && (
-        <Modal
-          id="modal-leave"
-          title="sair da fila"
-          icon="fas fa-times"
-          type="danger"
-          isOpen={modalLeave}
-          actionButton={configLeave}
-          onClose={toggleModalLeave}
-        >
-          <div className="box-body">
-            Se você continuar, sairá da fila. É isso mesmo?
-            {error && <p className="error">{error}</p>}
-            {info && <p className="info">{info}</p>}
-          </div>
-        </Modal>
-      )}
-      {modalStars && (
-        <Modal
-          type="rating"
-          title="avaliar"
-          id="modal-rating"
-          icon="fas fa-star"
-          isOpen={modalStars}
-          onClose={toggleModalStars}
-          getRatingId={getRatingId}
-        >
-          <div className="box-body">
-            Avalie seu tempo de espera e atendimento
-            {error && <p className="error">{error}</p>}
-            {info && <p className="info">{info}</p>}
-          </div>
-        </Modal>
-      )}
-      {modalHistoric && (
-        <Modal
-          type="success"
-          icon="fas fa-clock"
-          id="modal-add-historic"
-          title="adicionar ao histórico"
-          isOpen={modalHistoric}
-          actionButton={historic.length > 0 ? undefined : configHistoric}
-          onClose={toggleModalHistoric}
-        >
-          <div className="box-body">
-            {historic.length > 0 ? (
-              <span>
-                já existe um histórico para esse ticket <span role="img" aria-label="piscando e mostrando a linguinha">&#128540;</span>
-              </span>
-            ) : (
-              "gostaria de adicionar ess ticket ao histórico?"
+          <div className="menu" title="menu" onClick={() => toggleMenu(!menu)}>
+            <i className="fas fa-ellipsis-v"></i>
+            {menu && (
+              <ContextMenu>
+                <ul>
+                  <a href="/help">
+                    <li>ajuda</li>
+                  </a>
+                  <a href="mailto:haluanedecassia@gmail.com">
+                    <li className="feedback">feedback</li>
+                  </a>
+                  <a href="/about">
+                    <li>sobre</li>
+                  </a>
+                </ul>
+              </ContextMenu>
             )}
-            {error && <p className="error">{error}</p>}
-            {info && <p className="info">{info}</p>}
           </div>
-        </Modal>
-      )}
-    </Container>
+        </Nav>
+        {props.children}
+        <Nav className="bottom">
+          <button
+            onClick={() => toggleModalLeave(!modalLeave)}
+            title="sair da file"
+          >
+            <i className="fas fa-times"></i>
+          </button>
+          <button
+            onClick={() => toggleModalStars(!modalStars)}
+            title="avaliar local"
+          >
+            <i className="fas fa-star"></i>
+          </button>
+          <a href="/app" title="Home">
+            <i className="fas fa-home"></i>
+          </a>
+          <button
+            onClick={() => toggleModalHistoric(!modalHistoric)}
+            title="adicionar ao histórico"
+          >
+            <i className="far fa-check-circle"></i>
+          </button>
+          <a href="/historic" title="ver histórico">
+            <i className="far fa-clock"></i>
+          </a>
+        </Nav>
+        {modalLeave && (
+          <Modal
+            id="modal-leave"
+            title="sair da fila"
+            icon="fas fa-times"
+            type="danger"
+            isOpen={modalLeave}
+            actionButton={configLeave}
+            onClose={toggleModalLeave}
+          >
+            <div className="box-body">
+              Se você continuar, sairá da fila. É isso mesmo?
+              {error && <p className="error">{error}</p>}
+              {info && <p className="info">{info}</p>}
+            </div>
+          </Modal>
+        )}
+        {modalStars && (
+          <Modal
+            type="rating"
+            title="avaliar"
+            id="modal-rating"
+            icon="fas fa-star"
+            isOpen={modalStars}
+            onClose={toggleModalStars}
+            getRatingId={getRatingId}
+          >
+            <div className="box-body">
+              Avalie seu tempo de espera e atendimento
+              {error && <p className="error">{error}</p>}
+              {info && <p className="info">{info}</p>}
+            </div>
+          </Modal>
+        )}
+        {modalHistoric && (
+          <Modal
+            type="success"
+            icon="fas fa-clock"
+            id="modal-add-historic"
+            title="adicionar ao histórico"
+            isOpen={modalHistoric}
+            actionButton={historic.length > 0 ? undefined : configHistoric}
+            onClose={toggleModalHistoric}
+          >
+            <div className="box-body">
+              {historic.length > 0 ? (
+                <span>
+                  já existe um histórico para esse ticket <span role="img" aria-label="piscando e mostrando a linguinha">&#128540;</span>
+                </span>
+              ) : (
+                "gostaria de adicionar ess ticket ao histórico?"
+              )}
+              {error && <p className="error">{error}</p>}
+              {info && <p className="info">{info}</p>}
+            </div>
+          </Modal>
+        )}
+      </Container>
+    </Suspense>
   );
 };

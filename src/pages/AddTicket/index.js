@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 
 import api from "../../services/api";
 import {
@@ -10,6 +10,8 @@ import { ActionButton } from "../../styles/button";
 
 import { Container, InputGroup } from "./styles";
 import qrCodeIcon from "../../assets/icons/qrcode-icon.svg";
+
+const renderLoader = () => <i class="fas fa-spinner fa-spin"></i>;
 
 export default function AddTicket () {
   const [value, setValue] = useState("");
@@ -55,26 +57,28 @@ export default function AddTicket () {
   };
 
   return (
-    <Container>
-      <div className="qr-title">
-        <h1>Bem-vindo ao TW!</h1>
-      </div>
-      <div>
-        <p>adicione a senha ou o qrcode</p>
-        <InputGroup>
-          <input type="text" placeholder="ticket" value={value} onChange={event => setValue(event.target.value)}/>
-          <button onClick={() => alert('qrcode')}>
-            <img src={qrCodeIcon} alt="tw314 logo" />
-          </button>
-        </InputGroup>
-        {error && <p className="error">{error}</p>}
-        {info && <p className="info">{info}</p>}
-        <ActionButton onClick={() => onClick()}>entrar na fila</ActionButton>
-      </div>
-      <div className="qr-links">
-        <a href="/help">o que é um qrcode?</a><br />
-        <a href="/help">onde encontro a senha?</a>
-      </div>
-    </Container>
+    <Suspense fallback={() => renderLoader()}>
+      <Container>
+        <div className="qr-title">
+          <h1>Bem-vindo ao TW!</h1>
+        </div>
+        <div>
+          <p>adicione a senha ou o qrcode</p>
+          <InputGroup>
+            <input type="text" placeholder="ticket" value={value} onChange={event => setValue(event.target.value)}/>
+            <button onClick={() => alert('qrcode')}>
+              <img src={qrCodeIcon} alt="tw314 logo" />
+            </button>
+          </InputGroup>
+          {error && <p className="error">{error}</p>}
+          {info && <p className="info">{info}</p>}
+          <ActionButton onClick={() => onClick()}>entrar na fila</ActionButton>
+        </div>
+        <div className="qr-links">
+          <a href="/help">o que é um qrcode?</a><br />
+          <a href="/help">onde encontro a senha?</a>
+        </div>
+      </Container>
+    </Suspense>
   );
 }
