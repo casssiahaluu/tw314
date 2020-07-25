@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && react-snap",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-sw": "http-server ./build"
@@ -47,6 +47,10 @@
   },
   "devDependencies": {
     "http-server": "^0.12.3",
-    "miragejs": "^0.1.37"
+    "miragejs": "^0.1.37",
+    "react-snap": "^1.23.0"
+  },
+  "reactSnap": {
+    "inlineCss": true
   }
 }
