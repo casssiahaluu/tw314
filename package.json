@@ -3,17 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
+    "@testing-library/jest-dom": "^5.11.1",
+    "@testing-library/react": "^10.4.7",
+    "@testing-library/user-event": "^12.0.15",
     "axios": "^0.19.2",
     "express": "^4.17.1",
     "firebase": "^7.16.1",
     "font-awesome": "^4.7.0",
-    "gatsby-image": "^2.4.3",
-    "gatsby-plugin-offline": "^3.2.2",
-    "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
-    "gatsby-source-filesystem": "^2.3.3",
     "jsonwebtoken": "^8.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -25,10 +21,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && react-snap",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-sw": "http-server ./build"
+    "start-sw": "http-server ./build",
+    "postbuild": "react-snap"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -47,8 +44,7 @@
   },
   "devDependencies": {
     "http-server": "^0.12.3",
-    "miragejs": "^0.1.37",
-    "react-snap": "^1.23.0"
+    "miragejs": "^0.1.37"
   },
   "reactSnap": {
     "inlineCss": true
