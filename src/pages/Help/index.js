@@ -10,7 +10,7 @@ const renderLoader = () => <i class="fas fa-spinner fa-spin"></i>;
 export default function Help () {
   const [faqs, setFaqs] = React.useState([{
     question: "O que é um qrcode?",
-    answer: (<React.Fragment>O qrcode (ou código qr) é um código de barras bidimensional, com um padrão de barras diferente dos tradicionais, parecido com esse aqui <i className="fas fa-qrcode"></i><br />  Com ele, você consegue escanear com seu celular e ter acesso a várias coisas legais, como textos, links e outros arquivos de mídia (vídeo, imagem...). No tw, o código qr vai te dar uma senha que vai conseguir entrar diretamente no app, pra deixar sua vida ainda mais fácil. Não é demais?</React.Fragment>),
+    answer: (<React.Fragment>O qrcode (ou código qr) é um código de barras bidimensional, com um padrão de barras diferente dos tradicionais, parecido com esse aqui <i className="fas fa-qrcode"></i><br />  Com ele, você consegue escanear com seu celular e ter acesso a várias coisas legais, como textos, links e outros arquivos de mídia (vídeo, imagem...). No tw, o código qr vai te dar uma senha que vai conseguir entrar diretamente no <abbr title="Aplicativo mobile">app</abbr>, pra deixar sua vida ainda mais fácil. Não é demais?</React.Fragment>),
     open: false
   }, {
     question: "Onde encontro a senha?",
@@ -18,7 +18,7 @@ export default function Help () {
     open: false
   }, {
     question: "Onde posso usar o TW?",
-    answer: (<React.Fragment>O TW pode ser usado em qualquer estabelecimento (local) parceiro. Só precisa adicionar a senha ou escanear o qrcode usando esse app bonitão aqui e ser feliz. Simples assim! <span role="img" aria-label="sorriso com olhos de estrela">&#129321;</span></React.Fragment>),
+    answer: (<React.Fragment>O TW pode ser usado em qualquer estabelecimento (local) parceiro. Só precisa adicionar a senha ou escanear o qrcode usando esse <abbr title="Aplicativo mobile">app</abbr> bonitão aqui e ser feliz. Simples assim! <span role="img" aria-label="sorriso com olhos de estrela">&#129321;</span></React.Fragment>),
     open: false
   }]);
 

@@ -19,9 +19,9 @@ export default function Page404 () {
           <img className="logo" src={logo} alt="Logo tw314" />
           <p>
             Encontrada a página não foi. <br />
-            Voltar ao app você pode.
+            Voltar ao <abbr title="Aplicativo mobile">app</abbr> você pode.
           </p>
-          <ActionButton onClick={() => window.location.href = "/app"}>voltar ao app</ActionButton>
+          <ActionButton onClick={() => window.location.href = "/app"}>voltar ao <abbr title="Aplicativo mobile">app</abbr></ActionButton>
         </div>
         <div>
           <img src={yoda} alt="yoda" />
