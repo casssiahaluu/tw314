@@ -60,7 +60,8 @@ export const Nav = styled.nav`
     font-size: 30px;
     box-shadow: 0 0 -6px ${shadowColor};
 
-    span {
+    .page-title {
+      margin: 0;
       font-size: 1.2rem;
     }
 

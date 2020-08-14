@@ -4,7 +4,7 @@ import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
 import { lightColor, browShadowColor, darkColor } from "../../styles/colors";
 import { centeredElement, transitionAllEase } from "../../styles/helpers";
 
-export const Container = styled.div`
+export const Container = styled.main`
   ${centeredElement}
   height: 100vh;
   flex-wrap: wrap;
@@ -23,12 +23,13 @@ export const Container = styled.div`
   }
 `;
 
-export const InputGroup = styled.div`
+export const InputGroup = styled.form`
   position: relative;
   margin-bottom: 10px;
 
   input {
     height: 30px;
+    margin: 10px;
     color: ${darkColor};
     border-radius: 20px;
     padding: 0 40px 0 10px;

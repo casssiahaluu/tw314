@@ -8,6 +8,10 @@ export const Container = styled.div`
   flex-wrap: wrap;
   text-align:  center;
   flex-direction: column;
+
+  .version-number {
+    font-size: 1rem;
+  }
 `;
 
 export const ResponsiveImg = styled.img`

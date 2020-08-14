@@ -17,10 +17,10 @@ export default function About () {
             <ResponsiveImg src={Logo} alt="tw314 logo" />
           </div>
           <div>
-            <p>
+            <h2 className="version-number">
               versão 1.0.0 <br />
               2020 ©
-            </p>
+            </h2>
           </div>
           <div>
             <a href="mailto:haluanedecassia@gmail.com">deixar feedback</a><br />

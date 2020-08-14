@@ -4,7 +4,7 @@ import backgroundImage from "../../assets/images/backgroundFade-min.jpg";
 import { linkTextColor} from "../../styles/colors";
 import {centeredElement} from "../../styles/helpers";
 
-export const Container = styled.div`
+export const Container = styled.main`
   ${centeredElement}
   height: 100vh;
   background-image: url(${backgroundImage});
@@ -20,7 +20,7 @@ export const Form = styled.div`
     margin: 10px 0 15px;
   }
 
-  p {
+  .info {
     font-size: 1rem;
     text-align: center;
     margin-bottom: 15px;

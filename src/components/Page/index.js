@@ -112,10 +112,10 @@ export default function Page (props) {
         <Nav className="top">
           {props.title ? (
             <React.Fragment>
-              <a href="/app" title="voltar para home">
+              <a href="/app" title="voltar para home" aria-label="voltar para home">
                 <i className="fas fa-arrow-left"></i>
               </a>
-              <span>{props.title}</span>
+              <h1 className='page-title'>{props.title}</h1>
             </React.Fragment>
           ) : (
             <img src={Logo} height="32" alt="tw314 logo" />
@@ -144,25 +144,28 @@ export default function Page (props) {
           <button
             onClick={() => toggleModalLeave(!modalLeave)}
             title="sair da file"
+            aria-label="sair da fila"
           >
             <i className="fas fa-times"></i>
           </button>
           <button
             onClick={() => toggleModalStars(!modalStars)}
             title="avaliar local"
+            aria-label="avaliar local"
           >
             <i className="fas fa-star"></i>
           </button>
-          <a href="/app" title="Home">
+          <a href="/app" title="Home" aria-label="Home">
             <i className="fas fa-home"></i>
           </a>
           <button
             onClick={() => toggleModalHistoric(!modalHistoric)}
             title="adicionar ao histórico"
+            aria-label="adicionar ao histórico"
           >
             <i className="far fa-check-circle"></i>
           </button>
-          <a href="/historic" title="ver histórico">
+          <a href="/historic" aria-label="ver histórico" title="ver histórico">
             <i className="far fa-clock"></i>
           </a>
         </Nav>

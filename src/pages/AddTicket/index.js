@@ -9,7 +9,7 @@ import {
 import { ActionButton } from "../../styles/button";
 
 import { Container, InputGroup } from "./styles";
-import qrCodeIcon from "../../assets/icons/qrcode-icon.svg";
+// import qrCodeIcon from "../../assets/icons/qrcode-icon.svg";
 
 const renderLoader = () => <i class="fas fa-spinner fa-spin"></i>;
 
@@ -60,23 +60,33 @@ export default function AddTicket () {
     <Suspense fallback={() => renderLoader()}>
       <Container>
         <div className="qr-title">
-          <h1>Bem-vindo ao TW!</h1>
+          <h2>Bem-vindo ao TW!</h2>
         </div>
         <div>
-          <p>adicione a senha ou o qrcode</p>
+          <label if="label-add-code" for="add-code">
+            adicione a senha ou o qrcode
+          </label>
           <InputGroup>
-            <input type="text" placeholder="ticket" value={value} onChange={event => setValue(event.target.value)}/>
-            <button onClick={() => alert('qrcode')}>
-              <img src={qrCodeIcon} alt="tw314 logo" />
-            </button>
+            <input 
+              id="add-code" 
+              type="text" 
+              placeholder="ticket"
+              value={value} 
+              onChange={event => setValue(event.target.value)}
+            />
+            {/* <button onClick={() => alert('qrcode')}>
+              <img src={qrCodeIcon} alt="botão de qrcode" />
+            </button> */}
           </InputGroup>
           {error && <p className="error">{error}</p>}
           {info && <p className="info">{info}</p>}
           <ActionButton onClick={() => onClick()}>entrar na fila</ActionButton>
         </div>
         <div className="qr-links">
-          <a href="/help">o que é um qrcode?</a><br />
-          <a href="/help">onde encontro a senha?</a>
+          <a href="/help">
+            o que é um qrcode? <br />
+            onde encontro a senha?
+          </a>
         </div>
       </Container>
     </Suspense>

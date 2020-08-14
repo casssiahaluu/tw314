@@ -33,3 +33,4 @@ export const askPermissionNotifications = async () => {
     console.error(error);
   }
 }
+  

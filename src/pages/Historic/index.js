@@ -53,17 +53,17 @@ export default function Historic () {
           {historic.length > 0 ? (
             historic.map((log, i) => (
               <Item key={`historic_${i}`}>
-                <div className="historic-date">{getDate(log.createdAt)}</div>
+                <h2 className="historic-date">{getDate(log.createdAt)}</h2>
                 <div className="historic-details">
                   <div className="infos">
-                    <p>
+                    <h3 className="infos-details">
                       <i className="fas fa-map-marker-alt"></i>
                       local: <span>{log.place.name}</span>
-                    </p>
-                    <p>
+                    </h3>
+                    <h3 className="infos-details">
                       <i className="fas fa-hourglass-half"></i>
                       <span>{log.place.averageTime} min</span> de espera
-                    </p>
+                    </h3>
                   </div>
                   <div className="stars">
                     {log.rating ? getStars(log.rating.stars) : "não avaliado"}

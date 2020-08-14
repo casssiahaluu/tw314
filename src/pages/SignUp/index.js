@@ -51,10 +51,10 @@ function SignUp (props) {
     <Suspense fallback={renderLoader()}>
       <Container>
         <Form>
-          <img src={Logo} height="250" alt="tw314 logo" />
-          <p>
+          <img src={Logo} height="250" alt="logo de app tw314" />
+          <h2 className="info">
             para continuar usando nosso aplicativo você precisa aceitar nossos <a href="/#">termos de uso</a>.<br />
-            deseja continuar?</p>
+            deseja continuar?</h2>
           <ActionButton onClick={() => onClick()}>aceitar e entrar</ActionButton>
           {info && <p className="info">{info}</p>}
           {error && <p className="error">{error}</p>}

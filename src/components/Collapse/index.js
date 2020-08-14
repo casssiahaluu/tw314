@@ -13,7 +13,9 @@ export default function Collapse ({faq, index, toggle}) {
         onClick={() => toggle(index)}
       >
         <div className="faq-question">
-          {faq.question}
+          <h2 style={{fontSize: "1rem"}}>
+            {faq.question}
+          </h2>
         </div>
         <div className="faq-answer">
           {faq.answer}

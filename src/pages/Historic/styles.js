@@ -16,8 +16,9 @@ export const Container = styled.div`
   margin: 0 auto;
 `;
 
-export const Any = styled.div`
+export const Any = styled.h1`
   margin: 15px;
+  font-size: 1rem;
   text-align: center;
 `;
 
@@ -42,7 +43,8 @@ export const Item = styled.div`
     .infos {
       width: 140%;
 
-      p {
+      .infos-details {
+        font-size: 0.90rem;
         margin: 5px auto;
 
         i { margin-right: 10px; }

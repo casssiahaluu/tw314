@@ -42,18 +42,18 @@ export default function App () {
           {ticketInfo ? (
             <React.Fragment>
               <div>
-                <p className="ticket">
+                <h2 className="ticket">
                   sua senha é: <span className="pass">{ticketInfo.ticket}</span>
-                </p>
+                </h2>
               </div>
               <div>
                 <i className={`hourglass ${getColors()} `}></i>
-                <p className="details">
-                  <span className="message">ATENÇÃO</span> <br />
+                <h3 className="message">ATENÇÃO</h3>
+                <h3 className="details">
                   você está na <span className="people">{ticketInfo.position}ª posição</span> da fila <br/>
                   tempo estimado: <span className="time">{ticketInfo.waitingTime} min</span> <br />
                   local: <span className="place">{place}</span>
-                </p>
+                </h3>
               </div>
             </React.Fragment>
           ): <h3>não há nenhum ticket aguardado aqui! <br /><small>vá para <a href="/add-ticket">adicionar ticket</a> para acompanhar um</small></h3>}
