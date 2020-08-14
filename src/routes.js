@@ -27,11 +27,27 @@ function PrivateRoute({ children, ...rest }) {
   );
 }
 
+function AppRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) => isAuthenticated() ? (
+        <Redirect
+          to={{
+            pathname: "/app",
+            state: { from: location }
+          }}
+        />) : (children)
+      }
+    />
+  );
+}
+
 const Routes = () => (
   <BrowserRouter>
     <React.Suspense fallback={<h1>carregando...</h1>}>
       <Switch>
-        <Route exact path="/"><SignUp /></Route>
+        <AppRoute exact path="/"><SignUp /></AppRoute>
         <Route path="/help"><Help /></Route>
         
         <PrivateRoute path="/app"><App /></PrivateRoute>

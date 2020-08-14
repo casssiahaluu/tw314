@@ -52,9 +52,9 @@ function SignUp (props) {
       <Container>
         <Form>
           <img src={Logo} height="250" alt="logo de app tw314" />
-          <h2 className="info">
+          <h1 className="info">
             para continuar usando nosso aplicativo você precisa aceitar nossos <a href="/#">termos de uso</a>.<br />
-            deseja continuar?</h2>
+            deseja continuar?</h1>
           <ActionButton onClick={() => onClick()}>aceitar e entrar</ActionButton>
           {info && <p className="info">{info}</p>}
           {error && <p className="error">{error}</p>}

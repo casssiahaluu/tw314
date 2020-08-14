@@ -60,7 +60,7 @@ export default function AddTicket () {
     <Suspense fallback={() => renderLoader()}>
       <Container>
         <div className="qr-title">
-          <h2>Bem-vindo ao TW!</h2>
+          <h1>Bem-vindo ao TW!</h1>
         </div>
         <div>
           <label if="label-add-code" for="add-code">

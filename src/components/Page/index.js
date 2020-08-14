@@ -118,7 +118,10 @@ export default function Page (props) {
               <h1 className='page-title'>{props.title}</h1>
             </React.Fragment>
           ) : (
-            <img src={Logo} height="32" alt="tw314 logo" />
+            <React.Fragment>
+              <h1 aria-hidden="false" hidden='true'>tw314</h1>
+              <img src={Logo} height="32" alt="tw314 logo" />
+            </React.Fragment>
           )}
           <div className="menu" title="menu" onClick={() => toggleMenu(!menu)}>
             <i className="fas fa-ellipsis-v"></i>
@@ -155,7 +158,7 @@ export default function Page (props) {
           >
             <i className="fas fa-star"></i>
           </button>
-          <a href="/app" title="Home" aria-label="Home">
+          <a href="/" title="Home" aria-label="Home">
             <i className="fas fa-home"></i>
           </a>
           <button
